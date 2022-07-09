@@ -1,0 +1,91 @@
+para verificar se o npm está instalado
+npm --version
+
+para verificar se o node está instalado
+node --version
+
+para instalar o admin-lte
+npm install admin-lte --save
+
+
+
+# CONCEITOS
+utilizado para construir SPAs (single page applications)
+baseado em componentes
+usa JSX para renderizar HTML
+aplica virtual DOM para alterar o DOM
+pode ser adicionado a um projeto ou criar do zero
+
+# INSTALAÇÃO
+para criar um novo projeto
+npm install -g create-react-app
+create-react-app <nome-app>
+
+para iniciar o projeto no localhost
+npm start
+
+# PROPS
+valores passados como atributos na chamada dos componentes para deixá-los dinâmicos
+recuperado dentro de uma chamada ou argumento na chamada props
+são ready only!
+o props pode ser fragmentado, evitando repetição. Exemplo:
+
+function People({nome, idade, profissao, foto}) {    
+    return (
+        <div>
+            <img src= {foto} alt={nome} />
+            <h2>Nome: {nome}</h2>
+            <p>Idade: {idade}</p>
+            <p>Profissão: {profissao}</p>
+        </div>
+    )
+}
+
+export default People
+
+podemos definir em um objeto propTypes tipos para props (string, int, etc) realizando uma validação
+é possível definir também um valor default usando defaultProps
+
+podemos também passar métodos por props ou seja, o componente filho pode ativar um método do pai
+fazemos isso através de um evento com a sintaxe props.nomeEvento
+
+DICA: Como boa prática os métodos ficam sempre no componente pai, porque geralmente os componentes
+filhos são usados em vários lugares, assim vc não limita o escopo.
+
+
+# CSS GLOBAL
+aplicado no arquivo index.css
+é possível estilizar a nível de componente com CSS modules
+para isso criar um arquivo Components.module.css e fazer a chamada no componente desejado
+
+# FRAGMENTOS
+cria um componente sem elemento pai descomplicando os nós do DOM
+sintaxe: <></>
+
+# EVENTOS
+mesmos eventos do DOM, podemos responder a um click do mouse por exemplo
+o evento é atrelado a uma tag que vai executá-lo e atribuído um método criado no componente
+
+# USE STATE
+hook do react usado para manusear os estados de um componente
+funciona muito bem com eventos, podemos atrelar o evento a mudança do state
+
+# IF ELSE
+condição sempre deve ser feita entre chaves
+é possível usar o state para criar as condições
+
+# RENDERIZAÇÃO DE LISTAS
+Para renderizar uma lista precisamos de um array com qualquer número de dados, geralmente um array de objetos. 
+Depois utilizamos a função MAP para percorrer os itens do array e renderizar algo na tela... é possível unir operadores condicionais.
+
+# STATE LIFT
+usado para compartilhar o state com outros componentes que dependem do mesmo estado, então precisamos elevar o nível dele para um componente pai... então centralizamos o state no pai e definimos quem usa e quem define o setState
+
+# REACT ROUTER
+pacote que permite mudanças na url, que permite acessar outras páginas sem dar reload na página, trocando apena uma parte do layout da aplicação ou seja o que muda de view para view
+necessário instalar o pacote no projeto e mudar a estrutura do App
+
+# REACT ICONS
+pacote de ícones externo adicionado pelo npm que permite adicionar ícones com uma sintaxe parecida com a de componentes, usa várias bibliotecas (font-awesome, etc)
+
+

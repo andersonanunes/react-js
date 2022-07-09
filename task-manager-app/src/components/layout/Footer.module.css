@@ -1,0 +1,19 @@
+/*
+* CSS do Footer
+*/
+
+.socialList {
+    display: flex;
+    justify-content: center;
+    align-itens: center;
+    list-style: none;
+}
+
+.socialList li {
+    margin: 0 1em;
+}
+
+.socialList svg {
+    font-size: 2em;
+    cursor: pointer;
+}

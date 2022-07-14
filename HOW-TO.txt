@@ -89,3 +89,11 @@ necessário instalar o pacote no projeto e mudar a estrutura do App
 pacote de ícones externo adicionado pelo npm que permite adicionar ícones com uma sintaxe parecida com a de componentes, usa várias bibliotecas (font-awesome, etc)
 
 
+# PROJETOS COSTS
+- criar o projeto com npx install create-react-app <nome>
+- instalar as dependências
+	- npm install json-server (pra fazer comunicação com o backend)
+	- npm install react-icons (galeria de ícones)
+	- npm install react-router-dom (para criar as rotas)
+	- npm install uuid (cria IDs)
+

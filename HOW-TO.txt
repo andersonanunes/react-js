@@ -97,3 +97,6 @@ pacote de ícones externo adicionado pelo npm que permite adicionar ícones com 
 	- npm install react-router-dom (para criar as rotas)
 	- npm install uuid (cria IDs)
 
+# biblioteca externa para manipular API AXIOS
+
+npm install axios

@@ -1,0 +1,13 @@
+[
+    {
+        "title": "Dashboard",
+        "icon": "bi-gear-fill",
+        "path": "/"
+    },
+    {
+        "title": "Inbox",
+        "icon": "bi-info-circle-fill",
+        "path": "/inbox"
+    }
+]
+

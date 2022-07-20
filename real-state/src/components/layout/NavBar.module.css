@@ -1,0 +1,77 @@
+/*
+* CSS NavBar
+*/
+
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}
+
+.dropdown .dropdownMenu {
+  border-radius: 0;
+  left: auto;
+  margin: 0;
+  min-width: 115px;
+  padding: 0px;
+  position: absolute;
+  right: 0;
+  z-index: 9999999;
+}
+
+.dropdownMenu img {
+  margin-right: 5px;
+}
+
+.dropdownMenu li {
+  color: #333;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.dropdownMenu li:hover {
+  background: #eee none repeat scroll 0 0;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 3px 1.5rem;
+  clear: both;
+  font-weight: normal;
+  color: #292b2c;
+  text-align: inherit;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+}
+
+.dropdownItem:focus,
+.dropdownItem:hover {
+  color: #1d1e1f;
+  text-decoration: none;
+  background-color: #f7f7f9;
+}
+.dropdownItem.active,
+.dropdownItem:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #0275d8;
+}
+.dropdownItem.disabled,
+.dropdownItem:disabled {
+  color: #636c72;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+
+@media (max-width: 991px) {
+	.hiddenMdDown {
+	  display: none !important; } }
+
+@media (min-width: 992px) {
+	.hiddenLgUp {
+	  display: none !important; } }

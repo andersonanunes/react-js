@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Envio de Arquivos",
+        "icon": "bi-gear-fill",
+        "path": "/uploads"
+    },
+    {
+        "title": "Configurações",
+        "icon": "bi-gear-fill",
+        "path": "/settings"
+    }
+]

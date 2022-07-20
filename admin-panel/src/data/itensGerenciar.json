@@ -1,0 +1,47 @@
+[
+    {
+        "title": "Usuarios",
+        "icon": "bi-gear-fill",
+        "childrens": 
+        [
+            {
+                "title": "Login",
+                "path": "/login"
+            },
+            {
+                "title": "Register",
+                "path": "/register"
+            },
+            {
+                "title": "Forgot Password",
+                "path": "/forgot-password"
+            },
+            {
+                "title": "Reset Password",
+                "path": "/reset-password"
+            }
+        ]
+    },
+    {
+        "title": "Eventos",
+        "icon": "bi-info-circle-fill",
+        "path": "/eventos"
+    },
+    {
+        "title": "Tipos",
+        "icon": "bi-person-fill",
+        "path": "/tipos"
+    },
+    {
+        "title": "Categorias",
+        "icon": "bi-view-list",
+        "path": "/categorias"
+    },
+    {
+        "title": "Atividades",
+        "icon": "bi-question-circle-fill",
+        "path": "/atividades"
+    }
+]
+
+

@@ -1,0 +1,9 @@
+/*
+* CSS NavFooter
+*/
+
+.navFooter {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; 
+}

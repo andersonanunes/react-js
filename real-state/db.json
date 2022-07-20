@@ -1,0 +1,36 @@
+{
+  "findProperties": [
+      {
+          "id": 1,
+          "name": "Comprar"
+      },
+      {
+          "id": 2,
+          "name": "Vender"
+      },
+      {
+          "id": 3,
+          "name": "Alugar"
+      }
+  ],
+  "properties": [
+      {
+          "id": 1,
+          "name": "Casa"
+      },
+      {
+          "id": 2,
+          "name": "Apartamento"
+      },
+      {
+          "id": 3,
+          "name": "Casa de Condomínio"
+      },
+      {
+          "id": 4,
+          "name": "Chácara"
+      }
+  ]
+}
+
+

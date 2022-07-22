@@ -23,14 +23,25 @@
       "id": 2
     },
     {
-      "name": "Projeto Teste 3",
-      "budget": "2332313",
+      "name": "WebSite Vortex",
+      "budget": "16065.00",
       "category": {
         "id": "3",
         "name": "Design"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 4000,
+      "services": [
+        {
+          "name": "Criar protótipos Figma",
+          "cost": "2000.00",
+          "id": "889bed37-8056-4125-9e3c-2e3abde965ce"
+        },
+        {
+          "name": "Criar Frontend do Site",
+          "cost": "2000.00",
+          "id": "792d313a-485d-4678-8db0-7b9cc212109d"
+        }
+      ],
       "id": 3
     }
   ],

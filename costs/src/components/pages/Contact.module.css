@@ -1,0 +1,33 @@
+/*
+* CSS Contact
+*/
+
+.form {
+    width: 100%;
+    margin: 2em 0;
+}
+
+.formControl {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.formControl label {
+    margin-bottom: 0.6em;
+    font-weight: bold;
+}
+
+.formControl Input {
+    padding: 0.7em;
+    border-radius:  0;
+    border: none;
+}
+
+.formControl input::placeholder {
+    color: #7b7b7b;
+}
+
+.formControl textarea {
+    border: none;
+}

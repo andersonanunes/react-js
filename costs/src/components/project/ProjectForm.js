@@ -7,8 +7,8 @@ import SubmitButton from "../form/SubmitButton";
 import styles from "./ProjectForm.module.css";
 
 function ProjectForm({ btnText, handleSubmit, projectData }) {
-    const [categories, setCategories] = useState([]);
-    const [project, setProject] = useState(projectData || {});
+    const [categories, setCategories] = useState([]); // inicializa com um array vazio
+    const [project, setProject] = useState(projectData || {}); // inicializa com um objeto vazio
 
     useEffect(() => {
         fetch("http://localhost:5000/categories", {

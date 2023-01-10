@@ -1,6 +1,6 @@
-import { createTheme } from "@mui/material";
-import { yellow } from "@mui/material/colors";
-import { cyan } from "@mui/material/colors";
+import { createTheme } from '@mui/material';
+import { yellow } from '@mui/material/colors';
+import { cyan } from '@mui/material/colors';
 
 export const LightTheme = createTheme({
     palette: {
@@ -21,4 +21,4 @@ export const LightTheme = createTheme({
             paper: '#fff',
         }
     }
-})
+});

@@ -1,9 +1,6 @@
-import { Drawer, useTheme, Avatar, Divider, Box, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Drawer, useTheme, Avatar, Divider, Box, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery } from '@mui/material';
 import { Icon } from '@mui/material';
-
-
-
-
+import { useAppDrawerContext } from '../../contexts';
 
 interface ISidebarProps {
     children: React.ReactNode;
@@ -12,10 +9,13 @@ interface ISidebarProps {
 export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
     
     const theme = useTheme();
-    
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const { isDrawerOpen, toogleDrawerOpen } = useAppDrawerContext();
+
     return (
         <>
-            <Drawer variant='permanent'>
+            <Drawer open={isDrawerOpen} variant={smDown ? 'temporary' : 'permanent'} onClose={toogleDrawerOpen}>
                 <Box width={theme.spacing(28)} height="100%" display="flex" flexDirection="column">
                     <Box width="100%" height={theme.spacing(20)} display="flex" alignItems="center" justifyContent="center">
                         <Avatar sx={{ height: theme.spacing(12), width: theme.spacing(12) }} alt="Anderson Nunes" src="/static/images/avatar/1.jpg" />
@@ -61,8 +61,6 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
                                 </ListItemIcon>
                                 <ListItemText primary="Loren Ipsum" />
                             </ListItemButton>
-
-
                         </List>
                     </Box>
 

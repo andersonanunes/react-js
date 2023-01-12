@@ -1,2 +1,3 @@
-export * from './sidebar/sidebar';
-export * from './toolbox/SearchBar';
+export * from './sidebar/Sidebar';
+export * from './searchbar/SearchBar';
+export * from './details/DetailsTools';

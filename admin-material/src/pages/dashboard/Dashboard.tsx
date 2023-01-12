@@ -1,4 +1,4 @@
-import { SearchBar } from '../../shared/components';
+import { DetailsTools } from '../../shared/components';
 import { BaseLayout } from '../../shared/layouts';
 
 export const Dashboard = () => {
@@ -6,7 +6,7 @@ export const Dashboard = () => {
         <BaseLayout
             titulo='Dashboard'
             barraDeFerramentas={(
-                <SearchBar mostrarInput textoBusca={''} textoBotaoNovo={'Novo'} mostrarBotaoNovo />
+                <DetailsTools />
             )}
         >
             testando

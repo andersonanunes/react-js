@@ -6,6 +6,7 @@ export const Dashboard = () => {
     return (
         <BaseLayout
             titulo='Dashboard'
+            barraDeFerramentas={<>barraDeFerramentas</>}
         >
             testando
         </BaseLayout>

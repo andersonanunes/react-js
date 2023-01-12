@@ -24,7 +24,7 @@ export const BaseLayout: React.FC<IBaseLayoutProps> = ({ children, titulo, barra
                         <Icon>menu</Icon>
                     </IconButton>
                 )}
-                <Typography variant={smDown ? "h5" : mdDown ? "h4" : "h3"} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                <Typography variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
                     {titulo}
                 </Typography>
             </Box>

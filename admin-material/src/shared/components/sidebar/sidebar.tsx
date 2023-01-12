@@ -1,7 +1,7 @@
 import { Drawer, useTheme, Avatar, Divider, Box, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery } from '@mui/material';
 import { Icon } from '@mui/material';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
-import { useAppDrawerContext } from '../../contexts';
+import { useAppDrawerContext, useAppThemeContext } from '../../contexts';
 
 interface IListItemLinkProps {
     label: string;
@@ -43,6 +43,8 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
     const { isDrawerOpen, toggleDrawerOpen, isDrawerOptions } = useAppDrawerContext();
+    const { toggleTheme } = useAppThemeContext();
+
 
     return (
         <>
@@ -65,6 +67,16 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
                                     onClick={smDown ? toggleDrawerOpen : undefined}
                                 />
                             ))}
+                        </List>
+                    </Box>
+                    <Box>
+                        <List component="nav">
+                            <ListItemButton onClick={toggleTheme}>
+                                <ListItemIcon>
+                                    <Icon>dark_mode</Icon>
+                                </ListItemIcon>
+                                <ListItemText primary="Dark Theme" />
+                            </ListItemButton>
                         </List>
                     </Box>
                 </Box>

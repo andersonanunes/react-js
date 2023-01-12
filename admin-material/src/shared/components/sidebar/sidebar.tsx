@@ -1,6 +1,5 @@
 import { Drawer, useTheme, Avatar, Divider, Box, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery } from '@mui/material';
 import { Icon } from '@mui/material';
-import React from 'react';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { useAppDrawerContext } from '../../contexts';
 
@@ -68,7 +67,6 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
                             ))}
                         </List>
                     </Box>
-
                 </Box>
             </Drawer>
             <Box height="100vh" marginLeft={theme.spacing(28)} >

@@ -1,2 +1,2 @@
 export * from './sidebar/sidebar';
-export * from './toolbox/BarraFerramentas';
+export * from './toolbox/SearchBar';

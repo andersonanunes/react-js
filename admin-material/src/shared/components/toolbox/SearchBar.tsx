@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Paper, useTheme, Icon } from '@mui/material';
 
 
-interface IBarraFerramentasProps {
+interface ISearchBarProps {
     textoBusca: string;
     mostrarInput: boolean;
     aoMudarTextoBusca?: (novoTexto: string) => void;  
@@ -10,7 +10,7 @@ interface IBarraFerramentasProps {
     aoClicarEmNovo?: () => void; 
 }
 
-export const BarraFerramentas: React.FC<IBarraFerramentasProps> = ({ 
+export const SearchBar: React.FC<ISearchBarProps> = ({ 
     textoBusca='', 
     mostrarInput='false', 
     aoMudarTextoBusca,
@@ -39,7 +39,7 @@ export const BarraFerramentas: React.FC<IBarraFerramentasProps> = ({
                     value={textoBusca}
                     onChange={(e) => aoMudarTextoBusca?.(e.target.value)}
                 />
-            )};
+            )}
             <Box flex={1} display='flex' justifyContent='end'>
                 {mostrarBotaoNovo && (                
                     <Button 

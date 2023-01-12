@@ -1,14 +1,12 @@
-import { BarraFerramentas } from '../../shared/components';
+import { SearchBar } from '../../shared/components';
 import { BaseLayout } from '../../shared/layouts';
-
-
 
 export const Dashboard = () => {
     return (
         <BaseLayout
             titulo='Dashboard'
             barraDeFerramentas={(
-                <BarraFerramentas mostrarInput textoBusca={''} textoBotaoNovo={'Novo'} mostrarBotaoNovo />
+                <SearchBar mostrarInput textoBusca={''} textoBotaoNovo={'Novo'} mostrarBotaoNovo />
             )}
         >
             testando

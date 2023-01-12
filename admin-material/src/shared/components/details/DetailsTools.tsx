@@ -1,6 +1,33 @@
 import { Box, Button, Divider, Icon, Paper, useTheme } from '@mui/material';
 
-export const DetailsTools: React.FC = () => {
+interface IDetailsToolsProps {
+    textoBotaoNovo?: string;
+    mostrarBotaoNovo?: boolean;
+    mostrarBotaoCancelar?: boolean;
+    mostrarBotaoExcluir?: boolean;
+    mostrarBotaoSalvar?: boolean;
+    mostrarBotaoSalvarVoltar?: boolean;
+
+    aoClicarEmNovo?: () => void;
+    aoClicarEmVoltar?: () => void;
+    aoClicarEmExcluir?: () => void;
+    aoClicarEmSalvar?: () => void;
+    aoClicarEmSalvarVoltar?: () => void;
+}
+
+export const DetailsTools: React.FC<IDetailsToolsProps> = ({ 
+    textoBotaoNovo = 'Novo', 
+    mostrarBotaoNovo = true,
+    mostrarBotaoCancelar = true, 
+    mostrarBotaoExcluir = true, 
+    mostrarBotaoSalvar = true, 
+    mostrarBotaoSalvarVoltar = false,
+    aoClicarEmNovo,
+    aoClicarEmVoltar,
+    aoClicarEmExcluir,
+    aoClicarEmSalvar,
+    aoClicarEmSalvarVoltar
+}) => {
 
     const theme = useTheme();
 
@@ -15,52 +42,67 @@ export const DetailsTools: React.FC = () => {
             gap={1} 
             component={Paper}
         >
-            <Button 
-                variant='contained' 
-                color='primary' 
-                disableElevation 
-                startIcon={<Icon>save</Icon>}
-            >
-                Salvar
-            </Button>  
+            {mostrarBotaoSalvar && (            
+                <Button 
+                    variant='contained' 
+                    color='primary' 
+                    disableElevation
+                    onClick={aoClicarEmSalvar} 
+                    startIcon={<Icon>save</Icon>}
+                >
+                    Salvar
+                </Button>  
+            )}
 
-            <Button 
-                variant='outlined' 
-                color='primary' 
-                disableElevation 
-                startIcon={<Icon>save</Icon>}
-            >
-                Salvar e Voltar
-            </Button>  
+            {mostrarBotaoSalvarVoltar && (
+                <Button 
+                    variant='outlined' 
+                    color='primary' 
+                    disableElevation
+                    onClick={aoClicarEmSalvarVoltar}
+                    startIcon={<Icon>save</Icon>}
+                >
+                    Salvar e Voltar
+                </Button> 
+            )} 
 
-            <Button 
-                variant='outlined' 
-                color='primary' 
-                disableElevation 
-                startIcon={<Icon>delete</Icon>}
-            >
-                Excluir
-            </Button>  
+            {mostrarBotaoExcluir && (
+                <Button 
+                    variant='outlined' 
+                    color='primary' 
+                    disableElevation
+                    onClick={aoClicarEmExcluir}
+                    startIcon={<Icon>delete</Icon>}
+                >
+                    Excluir
+                </Button>
+            )}  
 
-            <Button 
-                variant='outlined' 
-                color='primary' 
-                disableElevation 
-                startIcon={<Icon>add</Icon>}
-            >
-                Novo
-            </Button>            
+            {mostrarBotaoNovo && (
+                <Button 
+                    variant='outlined' 
+                    color='primary' 
+                    disableElevation
+                    onClick={aoClicarEmNovo}
+                    startIcon={<Icon>add</Icon>}
+                >
+                    {textoBotaoNovo}
+                </Button>
+            )}           
 
             <Divider variant='middle' orientation='vertical' />
 
-            <Button 
-                variant='outlined' 
-                color='primary' 
-                disableElevation 
-                startIcon={<Icon>arrow_back</Icon>}
-            >
-                Cancelar
-            </Button>  
+            {mostrarBotaoCancelar && (
+                <Button 
+                    variant='outlined' 
+                    color='primary' 
+                    disableElevation
+                    onClick={aoClicarEmVoltar}
+                    startIcon={<Icon>arrow_back</Icon>}
+                >
+                    Cancelar
+                </Button>
+            )}  
 
         </Box>
     );

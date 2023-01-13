@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, useTheme } from '@mui/material';
+import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from '@mui/material';
 
 interface IDetailsToolsProps {
     textoBotaoNovo?: string;
@@ -7,6 +7,12 @@ interface IDetailsToolsProps {
     mostrarBotaoExcluir?: boolean;
     mostrarBotaoSalvar?: boolean;
     mostrarBotaoSalvarVoltar?: boolean;
+
+    mostrarBotaoNovoCarregando?: boolean;
+    mostrarBotaoCancelarCarregando?: boolean;
+    mostrarBotaoExcluirCarregando?: boolean;
+    mostrarBotaoSalvarCarregando?: boolean;
+    mostrarBotaoSalvarVoltarCarregando?: boolean;
 
     aoClicarEmNovo?: () => void;
     aoClicarEmVoltar?: () => void;
@@ -22,6 +28,13 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
     mostrarBotaoExcluir = true, 
     mostrarBotaoSalvar = true, 
     mostrarBotaoSalvarVoltar = false,
+
+    mostrarBotaoNovoCarregando = false,
+    mostrarBotaoCancelarCarregando = false, 
+    mostrarBotaoExcluirCarregando = false, 
+    mostrarBotaoSalvarCarregando = false, 
+    mostrarBotaoSalvarVoltarCarregando = false,
+
     aoClicarEmNovo,
     aoClicarEmVoltar,
     aoClicarEmExcluir,
@@ -42,7 +55,7 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
             gap={1} 
             component={Paper}
         >
-            {mostrarBotaoSalvar && (            
+            {(mostrarBotaoSalvar && !mostrarBotaoSalvarCarregando) && (            
                 <Button 
                     variant='contained' 
                     color='primary' 
@@ -54,7 +67,11 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                 </Button>  
             )}
 
-            {mostrarBotaoSalvarVoltar && (
+            {mostrarBotaoSalvarCarregando && (
+                <Skeleton width={180} height={60}/>
+            )}
+
+            {(mostrarBotaoSalvarVoltar && !mostrarBotaoSalvarVoltarCarregando) && (
                 <Button 
                     variant='outlined' 
                     color='primary' 
@@ -66,7 +83,11 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                 </Button> 
             )} 
 
-            {mostrarBotaoExcluir && (
+            {mostrarBotaoSalvarVoltarCarregando && (
+                <Skeleton width={120} height={60}/>
+            )}
+
+            {(mostrarBotaoExcluir && !mostrarBotaoExcluirCarregando) && (
                 <Button 
                     variant='outlined' 
                     color='primary' 
@@ -78,7 +99,11 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                 </Button>
             )}  
 
-            {mostrarBotaoNovo && (
+            {mostrarBotaoExcluirCarregando && (
+                <Skeleton width={120} height={60}/>
+            )}
+
+            {(mostrarBotaoNovo && !mostrarBotaoNovoCarregando) && (
                 <Button 
                     variant='outlined' 
                     color='primary' 
@@ -90,9 +115,13 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                 </Button>
             )}           
 
+            {mostrarBotaoNovoCarregando && (
+                <Skeleton width={120} height={60}/>
+            )}
+
             <Divider variant='middle' orientation='vertical' />
 
-            {mostrarBotaoCancelar && (
+            {(mostrarBotaoCancelar && !mostrarBotaoCancelarCarregando) && (
                 <Button 
                     variant='outlined' 
                     color='primary' 
@@ -103,6 +132,10 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                     Cancelar
                 </Button>
             )}  
+
+            {mostrarBotaoCancelarCarregando && (
+                <Skeleton width={120} height={60}/>
+            )}
 
         </Box>
     );

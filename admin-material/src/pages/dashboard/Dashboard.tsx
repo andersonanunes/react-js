@@ -6,7 +6,7 @@ export const Dashboard = () => {
         <BaseLayout
             titulo='Dashboard'
             barraDeFerramentas={(
-                <DetailsTools />
+                <DetailsTools mostrarBotaoSalvarVoltar />
             )}
         >
             testando

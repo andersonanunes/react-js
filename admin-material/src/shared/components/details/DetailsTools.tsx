@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from '@mui/material';
+import { Box, Button, Divider, Icon, Paper, Skeleton, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 interface IDetailsToolsProps {
     textoBotaoNovo?: string;
@@ -43,6 +43,8 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
 }) => {
 
     const theme = useTheme();
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Box
@@ -63,7 +65,9 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                     onClick={aoClicarEmSalvar} 
                     startIcon={<Icon>save</Icon>}
                 >
-                    Salvar
+                    <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden'>
+                        Salvar
+                    </Typography>
                 </Button>  
             )}
 
@@ -71,7 +75,7 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                 <Skeleton width={180} height={60}/>
             )}
 
-            {(mostrarBotaoSalvarVoltar && !mostrarBotaoSalvarVoltarCarregando) && (
+            {(mostrarBotaoSalvarVoltar && !mostrarBotaoSalvarVoltarCarregando && !smDown && !mdDown) && (
                 <Button 
                     variant='outlined' 
                     color='primary' 
@@ -79,11 +83,13 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                     onClick={aoClicarEmSalvarVoltar}
                     startIcon={<Icon>save</Icon>}
                 >
-                    Salvar e Voltar
+                    <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden'>
+                        Salvar e Voltar
+                    </Typography>
                 </Button> 
             )} 
 
-            {mostrarBotaoSalvarVoltarCarregando && (
+            {(mostrarBotaoSalvarVoltarCarregando && !smDown && !mdDown) && (
                 <Skeleton width={120} height={60}/>
             )}
 
@@ -95,7 +101,9 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                     onClick={aoClicarEmExcluir}
                     startIcon={<Icon>delete</Icon>}
                 >
-                    Excluir
+                    <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden'>
+                        Excluir
+                    </Typography>
                 </Button>
             )}  
 
@@ -103,7 +111,7 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                 <Skeleton width={120} height={60}/>
             )}
 
-            {(mostrarBotaoNovo && !mostrarBotaoNovoCarregando) && (
+            {(mostrarBotaoNovo && !mostrarBotaoNovoCarregando && !smDown) && (
                 <Button 
                     variant='outlined' 
                     color='primary' 
@@ -111,15 +119,24 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                     onClick={aoClicarEmNovo}
                     startIcon={<Icon>add</Icon>}
                 >
-                    {textoBotaoNovo}
+                    <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden'>
+                        {textoBotaoNovo}
+                    </Typography>
                 </Button>
             )}           
 
-            {mostrarBotaoNovoCarregando && (
+            {(mostrarBotaoNovoCarregando && !smDown) && (
                 <Skeleton width={120} height={60}/>
             )}
 
-            <Divider variant='middle' orientation='vertical' />
+            {
+                (
+                    mostrarBotaoCancelar &&
+                    (mostrarBotaoNovo || mostrarBotaoExcluir || mostrarBotaoSalvar || mostrarBotaoSalvarVoltar)
+                ) && (
+                    <Divider variant='middle' orientation='vertical' />
+                )
+            }
 
             {(mostrarBotaoCancelar && !mostrarBotaoCancelarCarregando) && (
                 <Button 
@@ -129,7 +146,9 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
                     onClick={aoClicarEmVoltar}
                     startIcon={<Icon>arrow_back</Icon>}
                 >
-                    Cancelar
+                    <Typography variant='button' whiteSpace='nowrap' textOverflow='ellipsis' overflow='hidden'>
+                        Cancelar
+                    </Typography>
                 </Button>
             )}  
 

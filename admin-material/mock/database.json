@@ -2,7 +2,9 @@
     "pessoas": [
         {
             "id": 1,
-            "nome": "Anderson"
+            "nomeCompleto": "Anderson Anselmi Nunes",
+            "email": "andersonanunes@hotmail.com",
+            "cidadeId": 1
         }
     ] 
 }

@@ -1,6 +1,6 @@
-import axios from "axios";
-import { Environment } from "../../../environment";
-import { responseInterceptor } from "./interceptors";
+import axios from 'axios';
+import { Environment } from '../../../environment';
+import { responseInterceptor } from './interceptors';
 
 const Api = axios.create({
     baseURL: Environment.URL_BASE,
@@ -9,6 +9,6 @@ const Api = axios.create({
 Api.interceptors.response.use(
     (response) => responseInterceptor(response),
     (error) => responseInterceptor(error),
-)
+);
 
 export { Api };

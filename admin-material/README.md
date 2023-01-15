@@ -20,18 +20,7 @@ Lista os endpoints disponíveis
 
 ### Home
 -   [GET]   /home/modules
--   [GET]   /home/menu
--   [GET]   /home/footer
--   [GET]   /home/about-us
--   [GET]   /home/products
--   [GET]   /home/pilars-characteristics
--   [GET]   /home/video
--   [GET]   /home/doctor
--   [GET]   /home/carousel
--   [GET]   /home/blog
--   [GET]   /home/offline-media
--   [GET]   /home/banners
--   [GET]   /home/blog/posts
+
 
 
 ## 🛠️ Tecnologias Envolvidas
@@ -79,9 +68,6 @@ $ pip --version
 Extensões do **VSCode**
 
 - **Material Icon Theme**
-- **Python**
-- **Robot Framework Language Server**
-- **YAML**
 
 Ferramentas Opcionais
 
@@ -106,20 +92,45 @@ $ robot --version
 
 ### Instalando as Libraries do nosso projeto.
 
-Dentro do projeto de automação, temos um arquivo chamado **requirements.txt**. Este arquivo contêm todas as libraries (dependências) que serão necessárias para que possamos executar nossos testes sem problemas.
+Dentro do projeto, temos um arquivo chamado **package.json**. Este arquivo contêm todas as libraries (dependências de projeto) que serão necessárias para que possamos executar nossa aplicação sem problemas.
 
 Quais as libraries necessárias?
 
--   **RequestsLibrary**
--   **Collections**
--   **OperatingSystem**
--   **JSONLibrary**
--   **JsonValidator**
+    Dependências Globais
+-    **"@emotion/react": "^11.10.5"**
+-    **"@emotion/styled": "^11.10.5"**
+-    **"@mui/icons-material": "^5.11.0"**
+-    **"@mui/material": "^5.11.4"**
+-    **"@mui/system": "^5.11.2"**
+-    **"react": "^18.2.0"**
+-    **"react-dom": "^18.2.0"**
+-    **"react-router-dom": "^6.6.1"**
+-    **"react-scripts": "^5.0.1"**
+
+    Dependências de Desenvolvimento
+-    **"@testing-library/jest-dom": "^5.16.5"**
+-    **"@testing-library/react": "^13.4.0"**
+-    **"@testing-library/user-event": "^13.5.0"**
+-    **"@types/jest": "^27.5.2"**
+-    **"@types/node": "^16.18.11"**
+-    **"@types/react": "^18.0.26"**
+-    **"@types/react-dom": "^18.0.10"**
+-    **"@typescript-eslint/eslint-plugin": "^5.48.0"**
+-    **"@typescript-eslint/parser": "^5.48.0"**
+-    **"eslint": "^8.31.0"**
+-    **"eslint-plugin-react": "^7.31.11"**
+-    **"json-server": "^0.17.1"**
+-    **"typescript": "^4.9.4"**
+-    **"web-vitals": "^2.1.4"**
 
 ### Onde encontrar as libs
 
--   **[robotframework.org](https://robotframework.org/#resources)**
--   **[pypi.org](pypi.org)**
+-   **[json-server](https://www.npmjs.com/package/json-server)**
+-   **[axios](https://www.npmjs.com/package/axios)**
+
+
+
+
 
 ```bash
 # Para instalar uma nova library
@@ -215,7 +226,11 @@ Pensando em boas práticas e padrões de desenvolvimento, levantamos alguns iten
 
 ## 📌 Changelog
 
-17.11.22 - Upload inicial do Projeto
+ - Upload inicial do Projeto
+Instalação do json-server - https://www.npmjs.com/package/json-server
+Instalação do axios - https://www.npmjs.com/package/axios
+
+
 
 
 

@@ -5,6 +5,36 @@
             "nomeCompleto": "Anderson Anselmi Nunes",
             "email": "andersonanunes@hotmail.com",
             "cidadeId": 1
+        },
+        {
+            "id": 2,
+            "nomeCompleto": "Jhon Snow",
+            "email": "jhon.snow@hotmail.com",
+            "cidadeId": 1
+        },
+        {
+            "id": 3,
+            "nomeCompleto": "Cersei Lannister",
+            "email": "cersei.lannister@hotmail.com",
+            "cidadeId": 1
+        },
+        {
+            "id": 4,
+            "nomeCompleto": "Jaime Lannister",
+            "email": "jaime.lannister@hotmail.com",
+            "cidadeId": 1
+        },
+        {
+            "id": 5,
+            "nomeCompleto": "Arya Stark",
+            "email": "arya.stark@hotmail.com",
+            "cidadeId": 1
+        },
+        {
+            "id": 6,
+            "nomeCompleto": "Daenerys Targaryen",
+            "email": "daenerys.targaryen@hotmail.com",
+            "cidadeId": 1
         }
     ] 
 }

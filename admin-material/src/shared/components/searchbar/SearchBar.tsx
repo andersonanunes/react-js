@@ -2,17 +2,17 @@ import { Box, Button, TextField, Paper, useTheme, Icon } from '@mui/material';
 
 
 interface ISearchBarProps {
-    textoBusca: string;
+    textoBusca?: string;
     mostrarInput: boolean;
     aoMudarTextoBusca?: (novoTexto: string) => void;  
-    textoBotaoNovo: string;
-    mostrarBotaoNovo: boolean;
+    textoBotaoNovo?: string;
+    mostrarBotaoNovo?: boolean;
     aoClicarEmNovo?: () => void; 
 }
 
 export const SearchBar: React.FC<ISearchBarProps> = ({ 
-    textoBusca='', 
-    mostrarInput='false', 
+    textoBusca = '', 
+    mostrarInput = false, 
     aoMudarTextoBusca,
     textoBotaoNovo = 'Novo',
     mostrarBotaoNovo, 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { TableContainer, Table, Paper } from '@mui/material';
+import { TableContainer, Table, Paper, TableFooter, LinearProgress } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasService';
@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import { Environment } from '../../shared/environment';
 
 
 export const ListagemPessoas: React.FC = () => {
@@ -70,14 +71,27 @@ export const ListagemPessoas: React.FC = () => {
 
                         {rows.map( row => (
                             <TableRow key={row.id}>
-                                <TableCell>{row.id}</TableCell>
+                                <TableCell>Ações</TableCell>
                                 <TableCell>{row.nomeCompleto}</TableCell>
                                 <TableCell>{row.email}</TableCell>
                             </TableRow>
                         ))}
 
-
                     </TableBody>
+
+                    {totalCount === 0 && !isLoading && (
+                        <caption>{Environment.LISTAGEM_VAZIA}</caption>
+                    )}
+
+                    <TableFooter>
+                        {isLoading &&(
+                            <TableRow>
+                                <TableCell colSpan={3}>
+                                    <LinearProgress variant='indeterminate' />
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableFooter>
                 </Table>
             </TableContainer>
         </BaseLayout>

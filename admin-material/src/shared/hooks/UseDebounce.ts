@@ -8,9 +8,12 @@ export const useDebounce = (delay = 300, notDelayFirstTime = true) => {
     const debounce = useCallback((func: () => void) => {
 
         if (isFirstTime.current) {
+            
             isFirstTime.current = false;
             func();
+        
         } else {
+        
             if (debouncing.current) {
                 clearTimeout(debouncing.current);
             }

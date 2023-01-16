@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, TableFooter, LinearProgress, Pagination } from '@mui/material';
-import { useSearchParams } from 'react-router-dom';
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, TableFooter, LinearProgress, Pagination, IconButton, Icon } from '@mui/material';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasService';
 import { Environment } from '../../shared/environment';
@@ -13,6 +13,8 @@ export const ListagemPessoas: React.FC = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const {debounce} = useDebounce();
+
+    const navigate = useNavigate();
 
     const [rows, setRows] = useState<IListagemPessoa[]>([]);
     const [totalCount, setTotalCount] = useState(0);
@@ -45,6 +47,26 @@ export const ListagemPessoas: React.FC = () => {
         });
     }, [busca, pagina]);
 
+
+    /**
+     * callback para os botoes - metodo para apagar o registro
+    */
+    const handleDelete = (id: number) => {
+        if (confirm('Deseja excluir o registro?')) {
+            PessoasService.deleteById(id)
+                .then(result => {
+                    if (result instanceof Error) {
+                        alert(result.message);
+                    } else {
+                        setRows(oldRows => [
+                            ...oldRows.filter(oldRow => oldRow.id !== id),
+                        ]);
+                        alert('registro excluído com sucesso!');
+                    }
+                });
+        }
+    };
+
     return (
         <BaseLayout 
             titulo="Listagem de Pessoas"
@@ -62,18 +84,27 @@ export const ListagemPessoas: React.FC = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Ações</TableCell>
+                            <TableCell>Id</TableCell>
                             <TableCell>Nome Completo</TableCell>
                             <TableCell>Email</TableCell>
+                            <TableCell>Ações</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
 
                         {rows.map( row => (
                             <TableRow key={row.id}>
-                                <TableCell>Ações</TableCell>
+                                <TableCell>{row.id}</TableCell>
                                 <TableCell>{row.nomeCompleto}</TableCell>
                                 <TableCell>{row.email}</TableCell>
+                                <TableCell>
+                                    <IconButton onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}>  
+                                        <Icon>edit</Icon>
+                                    </IconButton>
+                                    <IconButton size='small' onClick={() => handleDelete(row.id)}>
+                                        <Icon>delete</Icon>
+                                    </IconButton>
+                                </TableCell>
                             </TableRow>
                         ))}
 

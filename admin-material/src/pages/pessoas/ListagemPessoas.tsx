@@ -101,7 +101,7 @@ export const ListagemPessoas: React.FC = () => {
                                     <IconButton onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}>  
                                         <Icon>edit</Icon>
                                     </IconButton>
-                                    <IconButton size='small' onClick={() => handleDelete(row.id)}>
+                                    <IconButton  size='small' onClick={() => handleDelete(row.id)}>
                                         <Icon>delete</Icon>
                                     </IconButton>
                                 </TableCell>
@@ -124,7 +124,7 @@ export const ListagemPessoas: React.FC = () => {
                         )}
                         {(totalCount > 0 && totalCount > Environment.LIMITE_LINHAS) && (
                             <TableRow>
-                                <TableCell colSpan={3}>
+                                <TableCell colSpan={4}>
                                     <Pagination 
                                         page={pagina} 
                                         count={Math.ceil(totalCount / Environment.LIMITE_LINHAS)} 

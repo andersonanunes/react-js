@@ -34,6 +34,7 @@ export const SearchBar: React.FC<ISearchBarProps> = ({
         >
             {mostrarInput && (
                 <TextField 
+                    sx={{ width: '250ch' }}
                     size='small' 
                     placeholder='pesquisar...'
                     value={textoBusca}

@@ -2,21 +2,21 @@ import { useEffect, useMemo, useState } from 'react';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, TableFooter, LinearProgress, Pagination, IconButton, Icon } from '@mui/material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasService';
+import { IListagemPedidos, PedidosService } from '../../shared/services/api/pedidos/PedidosService';
 import { Environment } from '../../shared/environment';
 import { SearchBar } from '../../shared/components';
 import { useDebounce } from '../../shared/hooks';
 import { BaseLayout } from '../../shared/layouts';
 
 
-export const ListagemPessoas: React.FC = () => {
+export const ListagemPedidos: React.FC = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const {debounce} = useDebounce();
 
     const navigate = useNavigate();
 
-    const [rows, setRows] = useState<IListagemPessoa[]>([]);
+    const [rows, setRows] = useState<IListagemPedidos[]>([]);
     const [totalCount, setTotalCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -33,7 +33,7 @@ export const ListagemPessoas: React.FC = () => {
         setIsLoading(true);
     
         debounce(() => {
-            PessoasService.getAll(pagina, busca)
+            PedidosService.getAll(pagina, busca)
                 .then ((result) => {
                     setIsLoading(false);
                     if (result instanceof Error) {
@@ -53,7 +53,7 @@ export const ListagemPessoas: React.FC = () => {
     */
     const handleDelete = (id: number) => {
         if (confirm('Deseja excluir o registro?')) {
-            PessoasService.deleteById(id)
+            PedidosService.deleteById(id)
                 .then(result => {
                     if (result instanceof Error) {
                         alert(result.message);
@@ -69,7 +69,7 @@ export const ListagemPessoas: React.FC = () => {
 
     return (
         <BaseLayout 
-            titulo="Listagem de Pessoas"
+            titulo="Pedidos"
             barraDeFerramentas={
                 <SearchBar
                     mostrarInput
@@ -85,8 +85,11 @@ export const ListagemPessoas: React.FC = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Id</TableCell>
-                            <TableCell>Nome Completo</TableCell>
-                            <TableCell>Email</TableCell>
+                            <TableCell>Pedido Vortex</TableCell>
+                            <TableCell>Pedido Cliente</TableCell>
+                            <TableCell>Cliente</TableCell>
+                            <TableCell>Segmento</TableCell>
+                            <TableCell>Data / Hora</TableCell>
                             <TableCell>Ações</TableCell>
                         </TableRow>
                     </TableHead>
@@ -95,10 +98,13 @@ export const ListagemPessoas: React.FC = () => {
                         {rows.map( row => (
                             <TableRow key={row.id}>
                                 <TableCell>{row.id}</TableCell>
+                                <TableCell>{row.pedidoVortex}</TableCell>
+                                <TableCell>{row.pedidoCliente}</TableCell>
                                 <TableCell>{row.nomeCompleto}</TableCell>
-                                <TableCell>{row.email}</TableCell>
+                                <TableCell>{row.segmento}</TableCell>
+                                <TableCell>{row.data}</TableCell>
                                 <TableCell>
-                                    <IconButton onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}>  
+                                    <IconButton onClick={() => navigate(`/pedidos/detalhe/${row.id}`)}>  
                                         <Icon>edit</Icon>
                                     </IconButton>
                                     <IconButton  size='small' onClick={() => handleDelete(row.id)}>

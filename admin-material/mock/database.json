@@ -1,112 +1,166 @@
 {
-  "pessoas": [
+  "pedidos": [
     {
       "id": 1,
+      "pedidoVortex":"12589643",
+      "pedidoCliente":"12589625",
       "nomeCompleto": "Anderson Anselmi Nunes",
       "email": "andersonanunes@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 2,
+      "pedidoVortex":"12589644",
+      "pedidoCliente":"12589626",
       "nomeCompleto": "Jhon Snow",
       "email": "jhon.snow@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 3,
+      "pedidoVortex":"12589645",
+      "pedidoCliente":"12589627",
       "nomeCompleto": "Cersei Lannister",
       "email": "cersei.lannister@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 4,
+      "pedidoVortex":"12589646",
+      "pedidoCliente":"12589628",
       "nomeCompleto": "Jaime Lannister",
       "email": "jaime.lannister@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 5,
+      "pedidoVortex":"12589647",
+      "pedidoCliente":"12589629",
       "nomeCompleto": "Arya Stark",
       "email": "arya.stark@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 6,
+      "pedidoVortex":"12589648",
+      "pedidoCliente":"12589630",
       "nomeCompleto": "Daenerys Targaryen",
       "email": "daenerys.targaryen@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 7,
+      "pedidoVortex":"12589649",
+      "pedidoCliente":"12589631",
       "nomeCompleto": "Leandro Nunes",
       "email": "andersonanunes@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 8,
+      "pedidoVortex":"12589650",
+      "pedidoCliente":"12589632",
       "nomeCompleto": "Jhon Snow",
       "email": "jhon.snow@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 9,
+      "pedidoVortex":"12589651",
+      "pedidoCliente":"12589633",
       "nomeCompleto": "Cersei Lannister",
       "email": "cersei.lannister@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 10,
+      "pedidoVortex":"12589652",
+      "pedidoCliente":"12589634",
       "nomeCompleto": "Jaime Lannister",
       "email": "jaime.lannister@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 11,
+      "pedidoVortex":"12589653",
+      "pedidoCliente":"12589635",
       "nomeCompleto": "Arya Stark",
       "email": "arya.stark@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 12,
+      "pedidoVortex":"12589654",
+      "pedidoCliente":"12589636",
       "nomeCompleto": "Daenerys Targaryen",
       "email": "daenerys.targaryen@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 13,
+      "pedidoVortex":"12589655",
+      "pedidoCliente":"12589637",
       "nomeCompleto": "Ana Paula Nunes",
       "email": "andersonanunes@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 14,
+      "pedidoVortex":"12589656",
+      "pedidoCliente":"12589638",
       "nomeCompleto": "Jhon Snow",
       "email": "jhon.snow@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 15,
+      "pedidoVortex":"12589657",
+      "pedidoCliente":"12589639",
       "nomeCompleto": "Cersei Lannister",
       "email": "cersei.lannister@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 16,
+      "pedidoVortex":"12589658",
+      "pedidoCliente":"12589640",
       "nomeCompleto": "Jaime Lannister",
       "email": "jaime.lannister@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 17,
+      "pedidoVortex":"12589659",
+      "pedidoCliente":"12589641",
       "nomeCompleto": "Arya Stark",
       "email": "arya.stark@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     },
     {
       "id": 18,
+      "pedidoVortex":"12589660",
+      "pedidoCliente":"12589642",
       "nomeCompleto": "Daenerys Targaryen",
       "email": "daenerys.targaryen@hotmail.com",
-      "cidadeId": 1
+      "segmento": "retails",
+      "data":"02/12/2022 08:55:00"
     }
   ]
 }

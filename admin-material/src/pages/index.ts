@@ -1,3 +1,3 @@
 export * from './dashboard/Dashboard';
-export * from './pessoas/ListagemPessoas';
+export * from './pedidos/ListagemPedidos';
 export * from './cidades/ListagemCidades';

@@ -73,9 +73,10 @@ export const ListagemPedidos: React.FC = () => {
             barraDeFerramentas={
                 <SearchBar
                     mostrarInput
-                    textoBotaoNovo='Nova'
+                    textoBotaoNovo='Novo'
                     mostrarBotaoNovo
                     textoBusca={busca}
+                    aoClicarEmNovo={() => navigate('/pedidos/detalhe/novo')}
                     aoMudarTextoBusca={texto => setSearchParams({ busca: texto, pagina: '1' }, { replace: true })}
                 />
             }    

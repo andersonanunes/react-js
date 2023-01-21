@@ -17,6 +17,8 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ to, icon, label, onClick }
     const resolvedPath = useResolvedPath(to);
     const match = useMatch({ path: resolvedPath.pathname, end: false });
 
+
+
     const handleClick = () => {
         navigate(to);
         onClick?.();
@@ -81,7 +83,7 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
                     </Box>
                 </Box>
             </Drawer>
-            <Box height="100vh" marginLeft={theme.spacing(28)} >
+            <Box height="100vh" marginLeft={smDown ? theme.spacing(1) : theme.spacing(28)} >
                 {children}        
             </Box>
         </>

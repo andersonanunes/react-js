@@ -1,7 +1,9 @@
 import { LinearProgress } from '@mui/material';
+import { Form } from '@unform/web';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { DetailsTools } from '../../shared/components';
+import { VTextField } from '../../shared/forms';
 import { BaseLayout } from '../../shared/layouts';
 import { PedidosService } from '../../shared/services/api/pedidos/PedidosService';
 
@@ -76,6 +78,15 @@ export const DetalhesPedido: React.FC = () => {
                 <LinearProgress variant='indeterminate' />
             )}        
             <p>Detalhes do Pedido {id}</p>
+
+            <Form onSubmit={() => console.log}>
+                <VTextField
+                    name='Nome Completo'
+                />
+
+            </Form>
+
+
         </BaseLayout>
     );
 };

@@ -1,22 +1,33 @@
 import { LinearProgress } from '@mui/material';
+import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { DetailsTools } from '../../shared/components';
 import { VTextField } from '../../shared/forms';
 import { BaseLayout } from '../../shared/layouts';
 import { PedidosService } from '../../shared/services/api/pedidos/PedidosService';
 
+interface IFormData {
+    pedidoVortex: string;
+    pedidoCliente: string;
+    nomeCompleto: string;
+    email: string;
+    segmento: string;
+}
+
 export const DetalhesPedido: React.FC = () => {
 
     const { id = 'novo' } = useParams<'id'>();
     const navigate = useNavigate();
 
+    const formRef = useRef<FormHandles>(null);
+
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
 
     /**
-     * consuta que retorna os dados para o form
+     * consulta que retorna os dados para o form
      */
     useEffect(() => {
         if (id !== 'novo') {
@@ -35,8 +46,8 @@ export const DetalhesPedido: React.FC = () => {
         }
     }, [id]);
 
-    const handleSave = () => {
-        console.log('Salvar');
+    const handleSave = (dados: IFormData) => {
+        console.log(dados);
     };
 
     /**
@@ -66,8 +77,8 @@ export const DetalhesPedido: React.FC = () => {
                     mostrarBotaoSalvarVoltar
                     mostrarBotaoExcluir = {id !== 'novo'}
                     
-                    aoClicarEmSalvar = {handleSave}
-                    aoClicarEmSalvarVoltar = {handleSave}
+                    aoClicarEmSalvar = {() => formRef.current?.submitForm()}
+                    aoClicarEmSalvarVoltar = {() => formRef.current?.submitForm()}
                     aoClicarEmExcluir = {() => handleDelete(Number(id))}
                     aoClicarEmNovo = {() => navigate('/pedidos/detalhe/novo')}
                     aoClicarEmVoltar = {() => navigate('/pedidos')}
@@ -77,12 +88,15 @@ export const DetalhesPedido: React.FC = () => {
             {isLoading && (
                 <LinearProgress variant='indeterminate' />
             )}        
-            <p>Detalhes do Pedido {id}</p>
+            
 
-            <Form onSubmit={() => console.log}>
-                <VTextField
-                    name='Nome Completo'
-                />
+            <Form ref={formRef} onSubmit={handleSave}>
+                <VTextField name='pedidoVortex' />
+                <VTextField name='pedidoCliente' />
+                <VTextField name='nomeCompleto' />
+                <VTextField name='email' />
+                <VTextField name='segmento' />
+
 
             </Form>
 

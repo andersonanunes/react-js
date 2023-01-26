@@ -103,7 +103,7 @@ export const ListagemPedidos: React.FC = () => {
                                 <TableCell>{row.pedidoCliente}</TableCell>
                                 <TableCell>{row.nomeCompleto}</TableCell>
                                 <TableCell>{row.segmento}</TableCell>
-                                <TableCell>{row.data}</TableCell>
+                                <TableCell>{row.dataCriacao}</TableCell>
                                 <TableCell>
                                     <IconButton onClick={() => navigate(`/pedidos/detalhe/${row.id}`)}>  
                                         <Icon>edit</Icon>

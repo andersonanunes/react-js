@@ -14,6 +14,7 @@ interface IFormData {
     nomeCompleto: string;
     email: string;
     segmento: string;
+    dataCriacao: string;
 }
 
 export const DetalhesPedido: React.FC = () => {
@@ -40,14 +41,40 @@ export const DetalhesPedido: React.FC = () => {
                         navigate ('/pedidos');
                     } else {
                         setTitle(result.pedidoCliente);
-                        console.log(result);
+                        //console.log(result);
+
+                        // carrega os dados no form
+                        formRef.current?.setData(result);
+
                     }
                 });
         }
     }, [id]);
 
     const handleSave = (dados: IFormData) => {
-        console.log(dados);
+        //console.log(dados);
+        setIsLoading(true);
+        if (id === 'novo') {
+            PedidosService.create(dados)
+                .then((result) => {
+                    setIsLoading(false);
+                    if (result instanceof Error) {
+                        alert (result.message);
+                    } else {
+                        navigate (`/pedidos/detalhe/${result}`);
+                    }                    
+                });
+        } else {
+            PedidosService.updateById(Number(id), {id: Number(id), ...dados})
+                .then((result) => {
+                    setIsLoading(false);
+                    if (result instanceof Error) {
+                        alert (result.message);
+                    }                
+                });             
+        }
+
+
     };
 
     /**
@@ -91,13 +118,11 @@ export const DetalhesPedido: React.FC = () => {
             
 
             <Form ref={formRef} onSubmit={handleSave}>
-                <VTextField name='pedidoVortex' />
-                <VTextField name='pedidoCliente' />
-                <VTextField name='nomeCompleto' />
-                <VTextField name='email' />
-                <VTextField name='segmento' />
-
-
+                <VTextField name='pedidoVortex' placeholder='Pedido Vortex' />
+                <VTextField name='pedidoCliente' placeholder='Pedido Cliente' />
+                <VTextField name='nomeCompleto' placeholder='Nome Cliente' />
+                <VTextField name='email' placeholder='Email Contato' />
+                <VTextField name='segmento' placeholder='Segmento' />
             </Form>
 
 

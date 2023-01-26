@@ -9,7 +9,7 @@ export interface IListagemPedidos {
     nomeCompleto: string;
     email: string;
     segmento: string;
-    data: string;
+    dataCriacao: string;
 }
 
 export interface IDetalhePedidos {
@@ -19,7 +19,7 @@ export interface IDetalhePedidos {
     nomeCompleto: string;
     email: string;
     segmento: string;
-    data: string;
+    dataCriacao: string;
 }
 
 type TPedidosTotalcount = {

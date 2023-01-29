@@ -1,4 +1,4 @@
-import { LinearProgress } from '@mui/material';
+import { Box, Grid, LinearProgress, Paper } from '@mui/material';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { useEffect, useRef, useState } from 'react';
@@ -118,11 +118,19 @@ export const DetalhesPedido: React.FC = () => {
             
 
             <Form ref={formRef} onSubmit={handleSave}>
-                <VTextField name='pedidoVortex' placeholder='Pedido Vortex' />
-                <VTextField name='pedidoCliente' placeholder='Pedido Cliente' />
-                <VTextField name='nomeCompleto' placeholder='Nome Cliente' />
-                <VTextField name='email' placeholder='Email Contato' />
-                <VTextField name='segmento' placeholder='Segmento' />
+                <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
+                    <Grid container direction='column' padding={2} spacing={2}>
+                        <Grid item xs={2}>
+                            <VTextField name='pedidoVortex' placeholder='Pedido Vortex' />
+                        </Grid>
+                        <Grid item xs={2}>
+                            <VTextField name='pedidoCliente' placeholder='Pedido Cliente' />
+                        </Grid>
+                        <VTextField name='nomeCompleto' placeholder='Nome Cliente' />
+                        <VTextField name='email' placeholder='Email Contato' />
+                        <VTextField name='segmento' placeholder='Segmento' />
+                    </Grid>
+                </Box>
             </Form>
 
 

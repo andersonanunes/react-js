@@ -1,4 +1,4 @@
-import { Box, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, SelectChangeEvent } from '@mui/material';
+import { Box, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { useEffect, useRef, useState } from 'react';
@@ -29,11 +29,28 @@ export const DetalhesPedido: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
 
-    const [status, setStatus] = useState('');
+    const [status1, setStatus1] = useState('');
+    const [status2, setStatus2] = useState('');
+    const [decisao, setDecisao] = useState('');
+    const [parceria, setParceria] = useState('');
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setStatus(event.target.value as string);
+    const handleChangeStatus1 = (event: SelectChangeEvent) => {
+        setStatus1(event.target.value as string);
     };
+
+    const handleChangeStatus2 = (event: SelectChangeEvent) => {
+        setStatus2(event.target.value as string);
+    };
+
+    const handleChangeDecisao = (event: SelectChangeEvent) => {
+        setDecisao(event.target.value as string);
+    };
+
+    const handleChangeParceria = (event: SelectChangeEvent) => {
+        setParceria(event.target.value as string);
+    };
+
+
 
 
     /**
@@ -127,47 +144,57 @@ export const DetalhesPedido: React.FC = () => {
             <Form ref={formRef} onSubmit={handleSave}>
                 <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
                     <Grid container direction='column' padding={2} spacing={2}>
+                        <Grid item>
+                            <Typography variant='h6'>Informações Gerais</Typography>
+                        </Grid>
                         <Grid container direction='row' padding={2} spacing={2}>
                             <Grid item xs={12} sm={12} md={12} lg={8} xl={4}>
-                                <VTextField 
+                                <VTextField
                                     fullWidth 
                                     name='loja' 
+                                    label='Loja'
                                     placeholder='Loja' />
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} lg={2} xl={3}>
                                 <VTextField 
                                     fullWidth 
-                                    name='segmento' 
+                                    name='segmento'
+                                    label='Segmento' 
                                     placeholder='Segmento' />
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} lg={2} xl={1}>
                                 <VTextField 
                                     fullWidth 
                                     name='score'
+                                    label='Score'
                                     placeholder='Score' />
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} lg={3} xl={1}>
                                 <VTextField 
                                     fullWidth 
-                                    name='pedidoVortex' 
+                                    name='pedidoVortex'
+                                    label='Pedido Vortex' 
                                     placeholder='Pedido Vortex' />
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} lg={3} xl={1}>
                                 <VTextField 
-                                    fullWidth 
-                                    name='pedidoCliente' 
+                                    fullWidth
+                                    name='pedidoCliente'
+                                    label='Pedido Cliente' 
                                     placeholder='Pedido Cliente' />
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} lg={3} xl={1}>
                                 <VTextField 
                                     fullWidth 
-                                    name='dataPedido' 
+                                    name='dataPedido'
+                                    label='Data Pedido'
                                     placeholder='Data Pedido' />
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} lg={3} xl={1}>
                                 <VTextField 
                                     fullWidth 
-                                    name='sla' 
+                                    name='sla'
+                                    label='Sla'
                                     placeholder='Sla' />
                             </Grid>
                         </Grid>
@@ -175,31 +202,36 @@ export const DetalhesPedido: React.FC = () => {
                             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                 <VTextField 
                                     fullWidth 
-                                    name='nomeCompleto' 
+                                    name='nomeCompleto'
+                                    label='Nome Cliente' 
                                     placeholder='Nome Cliente' />
                             </Grid>
                             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                 <VTextField 
                                     fullWidth 
                                     name='email'
+                                    label='Email Contato'
                                     placeholder='Email Contato' />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                 <VTextField 
                                     fullWidth 
-                                    name='cpf' 
+                                    name='cpf'
+                                    label='Cpf' 
                                     placeholder='Cpf' />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                 <VTextField 
                                     fullWidth 
-                                    name='telefone' 
+                                    name='telefone'
+                                    label='Telefone' 
                                     placeholder='Telefone' />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                 <VTextField 
                                     fullWidth 
-                                    name='vinculo' 
+                                    name='vinculo'
+                                    label='Vínculo'
                                     placeholder='Vínculo entre ambos' />
                             </Grid>
                         </Grid>
@@ -207,43 +239,50 @@ export const DetalhesPedido: React.FC = () => {
                             <Grid item xs={8} sm={8} md={10} lg={10} xl={10}>
                                 <VTextField 
                                     fullWidth 
-                                    name='enderecoEntrega' 
+                                    name='enderecoEntrega'
+                                    label='Endereço Entrega' 
                                     placeholder='Endereço de Entrega' />
                             </Grid>    
                             <Grid item xs={4} sm={4} md={2} lg={2} xl={2}>
                                 <VTextField 
                                     fullWidth 
-                                    name='numero' 
+                                    name='numero'
+                                    label='Número' 
                                     placeholder='Número' />
                             </Grid>
                             <Grid item xs={8} sm={8} md={10} lg={10} xl={10}>
                                 <VTextField 
                                     fullWidth 
-                                    name='complemento' 
+                                    name='complemento'
+                                    label='Complemento' 
                                     placeholder='Complemento' />
                             </Grid>
                             <Grid item xs={4} sm={4} md={2} lg={2} xl={2}>
                                 <VTextField 
                                     fullWidth 
-                                    name='cep' 
+                                    name='cep'
+                                    label='Cep' 
                                     placeholder='Cep' />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} lg={5} xl={5}>
                                 <VTextField 
                                     fullWidth 
-                                    name='bairro' 
+                                    name='bairro'
+                                    label='Bairro' 
                                     placeholder='Bairro' />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} lg={5} xl={5}>
                                 <VTextField 
                                     fullWidth 
-                                    name='cidade' 
+                                    name='cidade'
+                                    label='Cidade' 
                                     placeholder='Cidade' />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} lg={2} xl={2}>
                                 <VTextField 
                                     fullWidth 
-                                    name='estado' 
+                                    name='estado'
+                                    label='Estado' 
                                     placeholder='Estado' />
                             </Grid>
                         </Grid>
@@ -251,40 +290,46 @@ export const DetalhesPedido: React.FC = () => {
                             <Grid item xs={12}>
                                 <VTextField 
                                     fullWidth 
-                                    multiline rows={8} 
-                                    name='observacoes' 
+                                    multiline rows={6} 
+                                    name='observacoes'
+                                    label='Observações' 
                                     defaultValue='Observações' />
                             </Grid>    
                         </Grid>
                         <Grid container direction='row' paddingX={2} paddingBottom={2} spacing={2}>
-                            <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
+                            <Grid item xs={6} sm={6} md={2} lg={1} xl={1}>
                                 <VTextField 
                                     fullWidth 
-                                    name='valorFrete' 
+                                    name='valorFrete'
+                                    label='Valor Frete' 
                                     placeholder='Valor Frete' />
                             </Grid>
-                            <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
+                            <Grid item xs={6} sm={6} md={2} lg={1} xl={1}>
                                 <VTextField 
                                     fullWidth 
-                                    name='valor' 
+                                    name='valorItens'
+                                    label='Valor' 
                                     placeholder='Valor' />
                             </Grid>
-                            <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
+                            <Grid item xs={6} sm={6} md={2} lg={1} xl={1}>
                                 <VTextField 
                                     fullWidth 
-                                    name='descontoAplicado' 
+                                    name='descontoAplicado'
+                                    label='Desconto Aplicado' 
                                     placeholder='Desconto Aplicado' />
                             </Grid>
                             <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                                 <VTextField 
                                     fullWidth 
-                                    name='formaPagamento' 
+                                    name='formaPagamento'
+                                    label='Forma de Pagamento' 
                                     placeholder='Forma de Pagamento' />
                             </Grid>
-                            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+                            <Grid item xs={12} sm={12} md={4} lg={7} xl={7}>
                                 <VTextField 
                                     fullWidth 
-                                    name='descricaoProduto' 
+                                    name='descricaoProduto'
+                                    label='Descrição do Produto' 
                                     placeholder='Descrição do Produto' />    
                             </Grid>    
                         </Grid>                  
@@ -292,16 +337,17 @@ export const DetalhesPedido: React.FC = () => {
                 </Box>
                 <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
                     <Grid container direction='column' padding={2} spacing={2}>
-                        <Grid container direction='row' padding={2} spacing={2}>
+                        <Grid item>
+                            <Typography variant='h6'>Para uso do Analista</Typography>
+                        </Grid>
+                        <Grid container direction='row' padding={2} paddingTop={4} spacing={2}>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
                                 <InputLabel id="demo-simple-select-label">Status 1</InputLabel>
                                 <Select
                                     fullWidth
-                                    labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={status}
-                                    label="Age"
-                                    onChange={handleChange}
+                                    value={status1}
+                                    onChange={handleChangeStatus1}
                                 >
                                     <MenuItem value={10}>Aprovado</MenuItem>
                                     <MenuItem value={20}>Reprovado</MenuItem>
@@ -314,9 +360,8 @@ export const DetalhesPedido: React.FC = () => {
                                     fullWidth
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={status}
-                                    label="Age"
-                                    onChange={handleChange}
+                                    value={status2}
+                                    onChange={handleChangeStatus2}
                                 >
                                     <MenuItem value={10}>Aprovado</MenuItem>
                                     <MenuItem value={20}>Reprovado</MenuItem>
@@ -329,9 +374,8 @@ export const DetalhesPedido: React.FC = () => {
                                     fullWidth
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={status}
-                                    label="Age"
-                                    onChange={handleChange}
+                                    value={decisao}
+                                    onChange={handleChangeDecisao}
                                 >
                                     <MenuItem value={10}>Aprovado</MenuItem>
                                     <MenuItem value={20}>Reprovado</MenuItem>
@@ -344,9 +388,8 @@ export const DetalhesPedido: React.FC = () => {
                                     fullWidth
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={status}
-                                    label="Age"
-                                    onChange={handleChange}
+                                    value={parceria}
+                                    onChange={handleChangeParceria}
                                 >
                                     <MenuItem value={10}>Sim</MenuItem>
                                     <MenuItem value={20}>Não</MenuItem>

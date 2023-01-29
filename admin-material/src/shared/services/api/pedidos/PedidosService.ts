@@ -14,6 +14,8 @@ export interface IListagemPedidos {
 
 export interface IDetalhePedidos {
     id: number;
+    loja: string;
+    score: number;
     pedidoVortex: string;
     pedidoCliente: string;
     nomeCompleto: string;

@@ -1,4 +1,4 @@
-import { Box, Grid, LinearProgress, Paper } from '@mui/material';
+import { Box, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, SelectChangeEvent } from '@mui/material';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { useEffect, useRef, useState } from 'react';
@@ -9,6 +9,8 @@ import { BaseLayout } from '../../shared/layouts';
 import { PedidosService } from '../../shared/services/api/pedidos/PedidosService';
 
 interface IFormData {
+    loja: string;
+    score: number;
     pedidoVortex: string;
     pedidoCliente: string;
     nomeCompleto: string;
@@ -26,6 +28,13 @@ export const DetalhesPedido: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
+
+    const [status, setStatus] = useState('');
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setStatus(event.target.value as string);
+    };
+
 
     /**
      * consulta que retorna os dados para o form
@@ -73,8 +82,6 @@ export const DetalhesPedido: React.FC = () => {
                     }                
                 });             
         }
-
-
     };
 
     /**
@@ -120,15 +127,232 @@ export const DetalhesPedido: React.FC = () => {
             <Form ref={formRef} onSubmit={handleSave}>
                 <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
                     <Grid container direction='column' padding={2} spacing={2}>
-                        <Grid item xs={2}>
-                            <VTextField name='pedidoVortex' placeholder='Pedido Vortex' />
+                        <Grid container direction='row' padding={2} spacing={2}>
+                            <Grid item xs={6}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='loja' 
+                                    placeholder='Loja' />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='segmento' 
+                                    placeholder='Segmento' />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='score'
+                                    placeholder='Score' />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='pedidoVortex' 
+                                    placeholder='Pedido Vortex' />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='pedidoCliente' 
+                                    placeholder='Pedido Cliente' />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='dataPedido' 
+                                    placeholder='Data Pedido' />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='sla' 
+                                    placeholder='Sla' />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={2}>
-                            <VTextField name='pedidoCliente' placeholder='Pedido Cliente' />
+                        <Grid container direction='row' paddingX={2} paddingBottom={2} spacing={2}>
+                            <Grid item xs={6}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='nomeCompleto' 
+                                    placeholder='Nome Cliente' />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='email'
+                                    placeholder='Email Contato' />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='cpf' 
+                                    placeholder='Cpf' />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='telefone' 
+                                    placeholder='Telefone' />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='vinculo' 
+                                    placeholder='Vínculo entre ambos' />
+                            </Grid>
                         </Grid>
-                        <VTextField name='nomeCompleto' placeholder='Nome Cliente' />
-                        <VTextField name='email' placeholder='Email Contato' />
-                        <VTextField name='segmento' placeholder='Segmento' />
+                        <Grid container direction='row' paddingX={2} paddingBottom={2} spacing={2}>
+                            <Grid item xs={10}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='enderecoEntrega' 
+                                    placeholder='Endereço de Entrega' />
+                            </Grid>    
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='numero' 
+                                    placeholder='Número' />
+                            </Grid>
+                            <Grid item xs={10}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='complemento' 
+                                    placeholder='Complemento' />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='cep' 
+                                    placeholder='Cep' />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='bairro' 
+                                    placeholder='Bairro' />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='cidade' 
+                                    placeholder='Cidade' />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='estado' 
+                                    placeholder='Estado' />
+                            </Grid>
+                        </Grid>
+                        <Grid container direction='row' paddingX={2} paddingBottom={2} spacing={2}>
+                            <Grid item xs={12}>
+                                <VTextField 
+                                    fullWidth 
+                                    multiline rows={8} 
+                                    name='observacoes' 
+                                    defaultValue='Observações' />
+                            </Grid>    
+                        </Grid>
+                        <Grid container direction='row' paddingX={2} paddingBottom={2} spacing={2}>
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='valorFrete' 
+                                    placeholder='Valor Frete' />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='valor' 
+                                    placeholder='Valor' />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='descontoAplicado' 
+                                    placeholder='Desconto Aplicado' />
+                            </Grid>
+                            <Grid item xs={2}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='formaPagamento' 
+                                    placeholder='Forma de Pagamento' />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='descricaoProduto' 
+                                    placeholder='Descrição do Produto' />    
+                            </Grid>    
+                        </Grid>                  
+                    </Grid>
+                </Box>
+                <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
+                    <Grid container direction='column' padding={2} spacing={2}>
+                        <Grid container direction='row' padding={2} spacing={2}>
+                            <Grid item xs={3}>
+                                <InputLabel id="demo-simple-select-label">Status 1</InputLabel>
+                                <Select
+                                    fullWidth
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={status}
+                                    label="Age"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={10}>Aprovado</MenuItem>
+                                    <MenuItem value={20}>Reprovado</MenuItem>
+                                    <MenuItem value={30}>Pendente</MenuItem>
+                                </Select>                                
+                            </Grid>
+                            <Grid item xs={3}>
+                                <InputLabel id="demo-simple-select-label">Status 2</InputLabel>
+                                <Select
+                                    fullWidth
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={status}
+                                    label="Age"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={10}>Aprovado</MenuItem>
+                                    <MenuItem value={20}>Reprovado</MenuItem>
+                                    <MenuItem value={30}>Pendente</MenuItem>
+                                </Select>                                
+                            </Grid>
+                            <Grid item xs={3}>
+                                <InputLabel id="demo-simple-select-label">Decisão</InputLabel>
+                                <Select
+                                    fullWidth
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={status}
+                                    label="Age"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={10}>Aprovado</MenuItem>
+                                    <MenuItem value={20}>Reprovado</MenuItem>
+                                    <MenuItem value={30}>Pendente</MenuItem>
+                                </Select>                                
+                            </Grid>
+                            <Grid item xs={3}>
+                                <InputLabel id="demo-simple-select-label">Parceria Emissor</InputLabel>
+                                <Select
+                                    fullWidth
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={status}
+                                    label="Age"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={10}>Sim</MenuItem>
+                                    <MenuItem value={20}>Não</MenuItem>
+                                </Select>                                
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Box>
             </Form>

@@ -14,16 +14,19 @@ export const AppRoutes = () => {
                 icon: 'home',
                 path: '/pagina-inicial',
                 label: 'Home',
+                color: '#fff',
             },
             {
                 icon: 'receipt',
                 path: '/pedidos',
                 label: 'Pedidos',
+                color: '#fff',
             },
             {
                 icon: 'settings',
                 path: '/cidades',
                 label: 'Configurações',
+                color: '#fff',
             },
         ]);
     });

@@ -4,6 +4,7 @@ interface IDrawerOptions {
     icon: string;
     path: string;
     label: string;
+    color: string;
 }
 
 interface IDrawerContextData {

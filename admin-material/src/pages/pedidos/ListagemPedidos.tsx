@@ -122,16 +122,9 @@ export const ListagemPedidos: React.FC = () => {
                     )}
 
                     <TableFooter>
-                        {isLoading &&(
-                            <TableRow>
-                                <TableCell colSpan={3}>
-                                    <LinearProgress variant='indeterminate' />
-                                </TableCell>
-                            </TableRow>
-                        )}
                         {(totalCount > 0 && totalCount > Environment.LIMITE_LINHAS) && (
                             <TableRow>
-                                <TableCell colSpan={4}>
+                                <TableCell colSpan={7}>
                                     <Pagination 
                                         page={pagina} 
                                         count={Math.ceil(totalCount / Environment.LIMITE_LINHAS)} 
@@ -141,6 +134,13 @@ export const ListagemPedidos: React.FC = () => {
                             </TableRow>
                         )}
                     </TableFooter>
+                    {isLoading &&(
+                        <TableRow>
+                            <TableCell colSpan={7}>
+                                <LinearProgress variant='indeterminate' />
+                            </TableCell>
+                        </TableRow>
+                    )}                    
                 </Table>
             </TableContainer>
         </BaseLayout>

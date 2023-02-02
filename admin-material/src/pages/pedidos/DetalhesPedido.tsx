@@ -1,10 +1,9 @@
 import { Box, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, SelectChangeEvent, Typography } from '@mui/material';
-import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { DetailsTools } from '../../shared/components';
-import { VTextField } from '../../shared/forms';
+import { useVForm, VTextField } from '../../shared/forms';
 import { BaseLayout } from '../../shared/layouts';
 import { PedidosService } from '../../shared/services/api/pedidos/PedidosService';
 
@@ -24,37 +23,36 @@ export const DetalhesPedido: React.FC = () => {
     const { id = 'novo' } = useParams<'id'>();
     const navigate = useNavigate();
 
-    const formRef = useRef<FormHandles>(null);
+    const { formRef, save, saveAndClose, isSaveAndClose } = useVForm();
 
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
 
+    /**
+     * eventos dos select box
+     */
     const [status1, setStatus1] = useState('');
-    const [status2, setStatus2] = useState('');
-    const [decisao, setDecisao] = useState('');
-    const [parceria, setParceria] = useState('');
-
     const handleChangeStatus1 = (event: SelectChangeEvent) => {
         setStatus1(event.target.value as string);
     };
-
+    
+    const [status2, setStatus2] = useState('');
     const handleChangeStatus2 = (event: SelectChangeEvent) => {
         setStatus2(event.target.value as string);
     };
-
+    
+    const [decisao, setDecisao] = useState('');
     const handleChangeDecisao = (event: SelectChangeEvent) => {
         setDecisao(event.target.value as string);
     };
-
+    
+    const [parceria, setParceria] = useState('');
     const handleChangeParceria = (event: SelectChangeEvent) => {
         setParceria(event.target.value as string);
     };
 
-
-
-
     /**
-     * consulta que retorna os dados para o form
+     * estados do form
      */
     useEffect(() => {
         if (id !== 'novo') {
@@ -74,9 +72,47 @@ export const DetalhesPedido: React.FC = () => {
 
                     }
                 });
+        } else {
+            formRef.current?.setData({
+                loja: '',
+                segmento: '',
+                score: '',
+                pedidoVortex: '',
+                pedidoCliente: '',
+                dataPedido: '',
+                sla: '',
+                nomeCompleto: '',
+                email: '',
+                cpf: '',
+                telefone: '',
+                vinculo: '',
+                enderecoEntrega: '',
+                numero: '',
+                complemento: '',
+                cep: '',
+                bairro: '',
+                cidade: '',
+                estado: '',
+                observacoes: '',
+                valorFrete: '',
+                valorItens: '',
+                descontoAplicado: '',
+                formaPagamento: '',
+                descricaoProduto: '',
+                status1: '',
+                status2: '',
+                decisao: '',
+                parceriaEmissor: '',
+                dataCriacao: '',
+                dataAtualizacao: ''                           
+            });
         }
     }, [id]);
 
+    /**
+     * callback para os botoes - método insert e update
+     * @param dados 
+     */
     const handleSave = (dados: IFormData) => {
         //console.log(dados);
         setIsLoading(true);
@@ -87,7 +123,11 @@ export const DetalhesPedido: React.FC = () => {
                     if (result instanceof Error) {
                         alert (result.message);
                     } else {
-                        navigate (`/pedidos/detalhe/${result}`);
+                        if (isSaveAndClose()) {
+                            navigate('/pedidos');
+                        } else {
+                            navigate (`/pedidos/detalhe/${result}`);
+                        }
                     }                    
                 });
         } else {
@@ -96,14 +136,19 @@ export const DetalhesPedido: React.FC = () => {
                     setIsLoading(false);
                     if (result instanceof Error) {
                         alert (result.message);
-                    }                
+                    } else {
+                        if (isSaveAndClose()) {
+                            navigate('/pedidos');
+                        }
+                    }          
                 });             
         }
     };
 
     /**
-     * callback para os botoes - metodo para apagar o registro
-    */
+     * callback para os botoes - metodo delete
+     * @param id 
+     */
     const handleDelete = (id: number) => {
         if (confirm('Deseja excluir o registro?')) {
             PedidosService.deleteById(id)
@@ -128,18 +173,16 @@ export const DetalhesPedido: React.FC = () => {
                     mostrarBotaoSalvarVoltar
                     mostrarBotaoExcluir = {id !== 'novo'}
                     
-                    aoClicarEmSalvar = {() => formRef.current?.submitForm()}
-                    aoClicarEmSalvarVoltar = {() => formRef.current?.submitForm()}
+                    aoClicarEmSalvar = {save}
+                    aoClicarEmSalvarVoltar = {saveAndClose}
                     aoClicarEmExcluir = {() => handleDelete(Number(id))}
                     aoClicarEmNovo = {() => navigate('/pedidos/detalhe/novo')}
                     aoClicarEmVoltar = {() => navigate('/pedidos')}
                 />
             }
         >
-            {isLoading && (
-                <LinearProgress variant='indeterminate' />
-            )}        
             
+   
 
             <Form ref={formRef} onSubmit={handleSave}>
                 <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
@@ -399,7 +442,10 @@ export const DetalhesPedido: React.FC = () => {
                     </Grid>
                 </Box>
             </Form>
-
+            
+            {isLoading && (
+                <LinearProgress variant='indeterminate' />
+            )}     
 
         </BaseLayout>
     );

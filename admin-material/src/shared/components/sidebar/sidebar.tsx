@@ -17,8 +17,6 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ to, icon, label, onClick }
     const resolvedPath = useResolvedPath(to);
     const match = useMatch({ path: resolvedPath.pathname, end: false });
 
-
-
     const handleClick = () => {
         navigate(to);
         onClick?.();
@@ -27,7 +25,7 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({ to, icon, label, onClick }
     return (
         <ListItemButton selected={!!match} onClick={handleClick}>
             <ListItemIcon>
-                <Icon>{icon}</Icon>
+                <Icon sx={{ color: '#fff' }}>{icon}</Icon>
             </ListItemIcon>
             <ListItemText primary={label} />
         </ListItemButton>
@@ -51,9 +49,21 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
 
     return (
         <>
-            <Drawer open={isDrawerOpen} variant={smDown || mdDown ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen}>
-                <Box width={theme.spacing(28)} height="100%" display="flex" flexDirection="column">
-                    <Box width="100%" height={theme.spacing(20)} display="flex" alignItems="center" justifyContent="center">
+            <Drawer open={isDrawerOpen} variant={smDown || mdDown ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen} >
+                <Box 
+                    width={theme.spacing(28)} 
+                    height="100%" 
+                    display="flex" 
+                    flexDirection="column" 
+                    bgcolor={theme.palette.primary.dark}
+                    color={theme.palette.primary.contrastText}>
+
+                    <Box 
+                        width="100%" 
+                        height={theme.spacing(20)} 
+                        display="flex" 
+                        alignItems="center" 
+                        justifyContent="center">
                         <Avatar sx={{ height: theme.spacing(12), width: theme.spacing(12) }} alt="Anderson Nunes" src="/static/images/avatar/1.jpg" />
                     </Box>
 
@@ -72,11 +82,11 @@ export const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
                             ))}
                         </List>
                     </Box>
-                    <Box>
+                    <Box color={theme.palette.primary.contrastText}>
                         <List component="nav">
                             <ListItemButton onClick={toggleTheme}>
                                 <ListItemIcon>
-                                    <Icon>dark_mode</Icon>
+                                    <Icon sx={{ color: '#fff' }}>dark_mode</Icon>
                                 </ListItemIcon>
                                 <ListItemText primary="Dark Theme" />
                             </ListItemButton>

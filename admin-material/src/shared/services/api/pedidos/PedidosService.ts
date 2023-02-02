@@ -15,13 +15,36 @@ export interface IListagemPedidos {
 export interface IDetalhePedidos {
     id: number;
     loja: string;
+    segmento: string;
     score: number;
-    pedidoVortex: string;
-    pedidoCliente: string;
+    pedidoVortex: number;
+    pedidoCliente: number;
+    dataPedido: string;
+    sla: number;
     nomeCompleto: string;
     email: string;
-    segmento: string;
+    cpf: string;
+    telefone: string;
+    vinculo: string;
+    enderecoEntrega: string;
+    numero: number;
+    complemento: string;
+    cep: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+    observacoes: string;
+    valorFrete: number;
+    valorItens: number;
+    descontoAplicado: number;
+    formaPagamento: string;
+    descricaoProduto: string;
+    status1: string;
+    status2: string;
+    decisao: string;
+    parceriaEmissor: string;
     dataCriacao: string;
+    dataAtualizacao: string;
 }
 
 type TPedidosTotalcount = {

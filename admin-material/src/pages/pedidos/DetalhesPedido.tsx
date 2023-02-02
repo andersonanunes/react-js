@@ -9,13 +9,36 @@ import { PedidosService } from '../../shared/services/api/pedidos/PedidosService
 
 interface IFormData {
     loja: string;
+    segmento: string;
     score: number;
-    pedidoVortex: string;
-    pedidoCliente: string;
+    pedidoVortex: number;
+    pedidoCliente: number;
+    dataPedido: string;
+    sla: number;
     nomeCompleto: string;
     email: string;
-    segmento: string;
+    cpf: string;
+    telefone: string;
+    vinculo: string;
+    enderecoEntrega: string;
+    numero: number;
+    complemento: string;
+    cep: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+    observacoes: string;
+    valorFrete: number;
+    valorItens: number;
+    descontoAplicado: number;
+    formaPagamento: string;
+    descricaoProduto: string;
+    status1: string;
+    status2: string;
+    decisao: string;
+    parceriaEmissor: string;
     dataCriacao: string;
+    dataAtualizacao: string;
 }
 
 export const DetalhesPedido: React.FC = () => {
@@ -23,7 +46,7 @@ export const DetalhesPedido: React.FC = () => {
     const { id = 'novo' } = useParams<'id'>();
     const navigate = useNavigate();
 
-    const { formRef, save, saveAndClose, isSaveAndClose } = useVForm();
+    const { formRef, save, saveAndClose, isSaveAndClose, clearForm } = useVForm();
 
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
@@ -46,7 +69,7 @@ export const DetalhesPedido: React.FC = () => {
         setDecisao(event.target.value as string);
     };
     
-    const [parceria, setParceria] = useState('');
+    const [parceriaEmissor, setParceria] = useState('');
     const handleChangeParceria = (event: SelectChangeEvent) => {
         setParceria(event.target.value as string);
     };
@@ -64,7 +87,7 @@ export const DetalhesPedido: React.FC = () => {
                         alert (result.message);
                         navigate ('/pedidos');
                     } else {
-                        setTitle(result.pedidoCliente);
+                        setTitle(String(result.pedidoCliente));
                         //console.log(result);
 
                         // carrega os dados no form
@@ -73,39 +96,7 @@ export const DetalhesPedido: React.FC = () => {
                     }
                 });
         } else {
-            formRef.current?.setData({
-                loja: '',
-                segmento: '',
-                score: '',
-                pedidoVortex: '',
-                pedidoCliente: '',
-                dataPedido: '',
-                sla: '',
-                nomeCompleto: '',
-                email: '',
-                cpf: '',
-                telefone: '',
-                vinculo: '',
-                enderecoEntrega: '',
-                numero: '',
-                complemento: '',
-                cep: '',
-                bairro: '',
-                cidade: '',
-                estado: '',
-                observacoes: '',
-                valorFrete: '',
-                valorItens: '',
-                descontoAplicado: '',
-                formaPagamento: '',
-                descricaoProduto: '',
-                status1: '',
-                status2: '',
-                decisao: '',
-                parceriaEmissor: '',
-                dataCriacao: '',
-                dataAtualizacao: ''                           
-            });
+            clearForm();
         }
     }, [id]);
 
@@ -116,6 +107,19 @@ export const DetalhesPedido: React.FC = () => {
     const handleSave = (dados: IFormData) => {
         //console.log(dados);
         setIsLoading(true);
+
+        // validacao dos dados
+        dados = {
+            ...dados, 
+            status1, 
+            status2,
+            decisao,
+            parceriaEmissor, 
+            dataAtualizacao: new Date().toLocaleString()
+        };
+
+        //console.log(dados);
+
         if (id === 'novo') {
             PedidosService.create(dados)
                 .then((result) => {
@@ -131,6 +135,7 @@ export const DetalhesPedido: React.FC = () => {
                     }                    
                 });
         } else {
+            console.log(dados);
             PedidosService.updateById(Number(id), {id: Number(id), ...dados})
                 .then((result) => {
                     setIsLoading(false);
@@ -389,12 +394,13 @@ export const DetalhesPedido: React.FC = () => {
                                 <Select
                                     fullWidth
                                     id="demo-simple-select"
+                                    name={'status1'}
                                     value={status1}
                                     onChange={handleChangeStatus1}
                                 >
-                                    <MenuItem value={10}>Aprovado</MenuItem>
-                                    <MenuItem value={20}>Reprovado</MenuItem>
-                                    <MenuItem value={30}>Pendente</MenuItem>
+                                    <MenuItem value={'1'}>Aprovado</MenuItem>
+                                    <MenuItem value={'2'}>Reprovado</MenuItem>
+                                    <MenuItem value={'3'}>Pendente</MenuItem>
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
@@ -406,9 +412,9 @@ export const DetalhesPedido: React.FC = () => {
                                     value={status2}
                                     onChange={handleChangeStatus2}
                                 >
-                                    <MenuItem value={10}>Aprovado</MenuItem>
-                                    <MenuItem value={20}>Reprovado</MenuItem>
-                                    <MenuItem value={30}>Pendente</MenuItem>
+                                    <MenuItem value={'1'}>Aprovado</MenuItem>
+                                    <MenuItem value={'2'}>Reprovado</MenuItem>
+                                    <MenuItem value={'3'}>Pendente</MenuItem>
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
@@ -420,9 +426,9 @@ export const DetalhesPedido: React.FC = () => {
                                     value={decisao}
                                     onChange={handleChangeDecisao}
                                 >
-                                    <MenuItem value={10}>Aprovado</MenuItem>
-                                    <MenuItem value={20}>Reprovado</MenuItem>
-                                    <MenuItem value={30}>Pendente</MenuItem>
+                                    <MenuItem value={'1'}>Aprovado</MenuItem>
+                                    <MenuItem value={'2'}>Reprovado</MenuItem>
+                                    <MenuItem value={'3'}>Pendente</MenuItem>
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
@@ -431,12 +437,30 @@ export const DetalhesPedido: React.FC = () => {
                                     fullWidth
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={parceria}
+                                    value={parceriaEmissor}
                                     onChange={handleChangeParceria}
                                 >
-                                    <MenuItem value={10}>Sim</MenuItem>
-                                    <MenuItem value={20}>Não</MenuItem>
+                                    <MenuItem value={'1'}>Sim</MenuItem>
+                                    <MenuItem value={'2'}>Não</MenuItem>
                                 </Select>                                
+                            </Grid>
+                            <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='dataCriacao'
+                                    label='Data Criação' 
+                                    InputProps={{
+                                        readOnly: true,
+                                    }} />                                 
+                            </Grid>
+                            <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
+                                <VTextField 
+                                    fullWidth 
+                                    name='dataAtualizacao'
+                                    label='Data Atualização' 
+                                    InputProps={{
+                                        readOnly: true,
+                                    }} />                                 
                             </Grid>
                         </Grid>
                     </Grid>

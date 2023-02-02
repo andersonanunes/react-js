@@ -27,12 +27,12 @@
       "descontoAplicado": "0,00",
       "formaPagamento": "Cartão Crédito",
       "descricaoProduto": "Caixa de Som Portátil JBL PartyBox 710 com Bluetooth, Luzes LED e À Prova de Respingos - 800W RMS",
-      "status1": "",
-      "status2": "",
-      "decisao": "",
-      "parceriaEmissor": "S",
+      "status1": "1",
+      "status2": "1",
+      "decisao": "3",
+      "parceriaEmissor": "1",
       "dataCriacao": "02/12/2022 08:55:00",
-      "dataAtualizacao": "29/01/2023 13:05:00"
+      "dataAtualizacao": "02/02/2023 17:16:03"
     },
     {
       "id": 2,
@@ -64,7 +64,7 @@
       "status1": "",
       "status2": "",
       "decisao": "",
-      "parceriaEmissor": "S",
+      "parceriaEmissor": "",
       "dataCriacao": "02/12/2022 08:55:00",
       "dataAtualizacao": "29/01/2023 13:05:00"
     },

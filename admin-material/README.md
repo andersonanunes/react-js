@@ -122,12 +122,13 @@ Quais as libraries necessárias?
 -    **"json-server": "^0.17.1"**
 -    **"typescript": "^4.9.4"**
 -    **"web-vitals": "^2.1.4"**
+-    **"yup": "^0.32.11"**
 
 ### Onde encontrar as libs
 
 -   **[json-server](https://www.npmjs.com/package/json-server)**
 -   **[axios](https://www.npmjs.com/package/axios)**
-
+-   **[yup](https://www.npmjs.com/package/yup)**
 
 
 
@@ -158,19 +159,13 @@ Estrutura de Pastas que fazem parte do projeto:
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/HqJPfbP/estrutura-pastas.png" alt="estrutura-pastas" border="0"></a>
 
--   **api:**  Pasta responsável por armazenar todo o core do projeto como, configurações, massa e keywords do projeto como um todo.
--   **data:** Pasta que possui as massa de dados e mensageria dos testes como, credenciais de acesso ou validação de mensagens de erro ou sucesso.
--   **json:** Pasta contendo os payloads enviados nas requisições que precisam de um body, separadas por features.
--   **keywords:** Pasta com as keywords do projeto, separadas por features.
--   **reports:** Pasta responsável por armazenar todos os logs / reports pós execução e evidências.
--   **schemas:** Pasta contendo os schemas para validação da tipagem de dados de cada endpoint, separadas por features.
--   **tests:** Pasta responsável por armazenar os cenários BDD's de execução, separadas por features.
+
 
 
 ## ⚙️ Executando os testes
 
 Para executarmos os testes, precisamos abrir o terminal integrado na pasta raiz do projeto.
-Neste caso a raiz é a pasta qa-sitebff-robot.
+Neste caso a raiz é a pasta src.
 
 #### Primeiro passo:
 

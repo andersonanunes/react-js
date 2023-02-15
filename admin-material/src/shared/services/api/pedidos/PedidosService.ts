@@ -106,7 +106,7 @@ const create = async (dados: Omit<IDetalhePedidos, 'id'>): Promise<number | Erro
 const updateById = async (id: number, dados: IDetalhePedidos): Promise<void | Error> => {
     try {
         const urlrelativa = `/pedidos/${id}`;
-        await Api.put(urlrelativa, dados);
+        await Api.put<IDetalhePedidos>(urlrelativa, dados);
     } catch (error) {
         console.error(error);
         return new Error((error as {message: string}).message || 'Erro ao atualizar o registro.');            

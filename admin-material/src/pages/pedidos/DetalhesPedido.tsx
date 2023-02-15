@@ -6,6 +6,7 @@ import { DetailsTools } from '../../shared/components';
 import { useVForm, VTextField } from '../../shared/forms';
 import { BaseLayout } from '../../shared/layouts';
 import { PedidosService } from '../../shared/services/api/pedidos/PedidosService';
+import * as yup from 'yup';
 
 interface IFormData {
     loja: string;
@@ -40,6 +41,40 @@ interface IFormData {
     dataCriacao: string;
     dataAtualizacao: string;
 }
+
+// const validateFormSchema: yup.SchemaOf<IFormData> = yup.object().shape({
+//     loja: yup.string(),
+//     segmento: yup.string().required(),
+//     score: yup.number().required().positive().integer(),
+//     pedidoVortex: yup.number().required().positive().integer(),
+//     pedidoCliente: yup.number().required().positive().integer(),
+//     dataPedido: yup.string(),
+//     sla: yup.number().required().positive().integer(),
+//     nomeCompleto: yup.string().required(),
+//     email: yup.string().required().email(),
+//     cpf: yup.string().required().min(11),
+//     telefone: yup.string().required(),
+//     vinculo: yup.string().required(), 
+//     enderecoEntrega: yup.string().required(),
+//     numero: yup.number().required().positive().integer(),
+//     complemento: yup.string(),
+//     cep: yup.string().required(),
+//     bairro: yup.string().required(),
+//     cidade: yup.string().required(),
+//     estado: yup.string().required(),
+//     observacoes: yup.string(),
+//     valorFrete: yup.number().required().positive().integer(),
+//     valorItens: yup.number().required().positive().integer(),
+//     descontoAplicado: yup.number().positive().integer(),
+//     formaPagamento: yup.string().required(),
+//     descricaoProduto: yup.string().required(),
+//     status1: yup.string(),
+//     status2: yup.string(),
+//     decisao: yup.string(),
+//     parceriaEmissor: yup.string(),
+//     dataCriacao: yup.string().required(),
+//     dataAtualizacao: yup.string().required(),
+// });
 
 export const DetalhesPedido: React.FC = () => {
 
@@ -105,10 +140,7 @@ export const DetalhesPedido: React.FC = () => {
      * @param dados 
      */
     const handleSave = (dados: IFormData) => {
-        //console.log(dados);
-        setIsLoading(true);
 
-        // validacao dos dados
         dados = {
             ...dados, 
             status1, 
@@ -118,7 +150,13 @@ export const DetalhesPedido: React.FC = () => {
             dataAtualizacao: new Date().toLocaleString()
         };
 
-        //console.log(dados);
+        // validacao dos dados
+        // validateFormSchema
+        //     .validate(dados, { abortEarly: false })
+        //     .then((dadosValidados) => {
+        //         console.log(dados);
+
+        setIsLoading(true);
 
         if (id === 'novo') {
             PedidosService.create(dados)
@@ -135,7 +173,6 @@ export const DetalhesPedido: React.FC = () => {
                     }                    
                 });
         } else {
-            console.log(dados);
             PedidosService.updateById(Number(id), {id: Number(id), ...dados})
                 .then((result) => {
                     setIsLoading(false);
@@ -148,6 +185,10 @@ export const DetalhesPedido: React.FC = () => {
                     }          
                 });             
         }
+        // })
+        // .catch((error: yup.ValidationError) => {
+        //     console.log(error);
+        // });
     };
 
     /**

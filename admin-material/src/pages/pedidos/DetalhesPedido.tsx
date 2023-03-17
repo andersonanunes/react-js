@@ -1,4 +1,4 @@
-import { Box, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Box, Grid, InputLabel, LinearProgress, MenuItem, Paper, Select, Typography } from '@mui/material';
 import { Form } from '@unform/web';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -40,41 +40,42 @@ interface IFormData {
     parceriaEmissor: string;
     dataCriacao: string;
     dataAtualizacao: string;
+
 }
 
-// const validateFormSchema: yup.SchemaOf<IFormData> = yup.object().shape({
-//     loja: yup.string(),
-//     segmento: yup.string().required(),
-//     score: yup.number().required().positive().integer(),
-//     pedidoVortex: yup.number().required().positive().integer(),
-//     pedidoCliente: yup.number().required().positive().integer(),
-//     dataPedido: yup.string(),
-//     sla: yup.number().required().positive().integer(),
-//     nomeCompleto: yup.string().required(),
-//     email: yup.string().required().email(),
-//     cpf: yup.string().required().min(11),
-//     telefone: yup.string().required(),
-//     vinculo: yup.string().required(), 
-//     enderecoEntrega: yup.string().required(),
-//     numero: yup.number().required().positive().integer(),
-//     complemento: yup.string(),
-//     cep: yup.string().required(),
-//     bairro: yup.string().required(),
-//     cidade: yup.string().required(),
-//     estado: yup.string().required(),
-//     observacoes: yup.string(),
-//     valorFrete: yup.number().required().positive().integer(),
-//     valorItens: yup.number().required().positive().integer(),
-//     descontoAplicado: yup.number().positive().integer(),
-//     formaPagamento: yup.string().required(),
-//     descricaoProduto: yup.string().required(),
-//     status1: yup.string(),
-//     status2: yup.string(),
-//     decisao: yup.string(),
-//     parceriaEmissor: yup.string(),
-//     dataCriacao: yup.string().required(),
-//     dataAtualizacao: yup.string().required(),
-// });
+const validateFormSchema = yup.object().shape({
+    loja: yup.string(),
+    segmento: yup.string().required(),
+    score: yup.number().required().positive().integer(),
+    pedidoVortex: yup.number().required().positive().integer(),
+    pedidoCliente: yup.number().required().positive().integer(),
+    dataPedido: yup.string(),
+    sla: yup.number().required().positive().integer(),
+    nomeCompleto: yup.string().required(),
+    email: yup.string().required().email(),
+    cpf: yup.string().required().min(11),
+    telefone: yup.string().required(),
+    vinculo: yup.string().required(), 
+    enderecoEntrega: yup.string().required(),
+    numero: yup.number().required().positive().integer(),
+    complemento: yup.string(),
+    cep: yup.string().required(),
+    bairro: yup.string().required(),
+    cidade: yup.string().required(),
+    estado: yup.string().required(),
+    observacoes: yup.string(),
+    valorFrete: yup.number().required().positive().integer(),
+    valorItens: yup.number().required().positive().integer(),
+    descontoAplicado: yup.number().positive().integer(),
+    formaPagamento: yup.string().required(),
+    descricaoProduto: yup.string().required(),
+    status1: yup.string().required(),
+    status2: yup.string().required(),
+    decisao: yup.string().required(),
+    parceriaEmissor: yup.string().required(),
+    dataCriacao: yup.string().required(),
+    dataAtualizacao: yup.string().required(),
+});
 
 export const DetalhesPedido: React.FC = () => {
 
@@ -89,25 +90,32 @@ export const DetalhesPedido: React.FC = () => {
     /**
      * eventos dos select box
      */
-    const [status1, setStatus1] = useState('');
-    const handleChangeStatus1 = (event: SelectChangeEvent) => {
-        setStatus1(event.target.value as string);
-    };
+    const [selectStatus1, setSelectStatus1] = useState('');
+    const listStatus1 = [
+        {id: 1, name: 'Aprovado'},
+        {id: 2, name: 'Reprovado'},
+        {id: 3, name: 'Pendente'},
+    ];
     
-    const [status2, setStatus2] = useState('');
-    const handleChangeStatus2 = (event: SelectChangeEvent) => {
-        setStatus2(event.target.value as string);
-    };
+    const [selectStatus2, setSelectStatus2] = useState('');
+    const listStatus2 = [
+        {id: 1, name: 'Aprovado'},
+        {id: 2, name: 'Reprovado'},
+        {id: 3, name: 'Pendente'},
+    ];
+
+    const [selectDecisao, setSelectDecisao] = useState('');
+    const listDecisao = [
+        {id: 1, name: 'Aprovado'},
+        {id: 2, name: 'Reprovado'},
+        {id: 3, name: 'Pendente'},
+    ];
     
-    const [decisao, setDecisao] = useState('');
-    const handleChangeDecisao = (event: SelectChangeEvent) => {
-        setDecisao(event.target.value as string);
-    };
-    
-    const [parceriaEmissor, setParceria] = useState('');
-    const handleChangeParceria = (event: SelectChangeEvent) => {
-        setParceria(event.target.value as string);
-    };
+    const [selectParceria, setSelectParceria] = useState('');
+    const listParceria = [
+        {id: 1, name: 'Sim'},
+        {id: 2, name: 'Não'},
+    ];
 
     /**
      * estados do form
@@ -123,6 +131,10 @@ export const DetalhesPedido: React.FC = () => {
                         navigate ('/pedidos');
                     } else {
                         setTitle(String(result.pedidoCliente));
+                        setSelectStatus1(String(result.status1));
+                        setSelectStatus2(String(result.status2));
+                        setSelectDecisao(String(result.decisao));
+                        setSelectParceria(String(result.parceriaEmissor));
                         //console.log(result);
 
                         // carrega os dados no form
@@ -141,54 +153,49 @@ export const DetalhesPedido: React.FC = () => {
      */
     const handleSave = (dados: IFormData) => {
 
-        dados = {
-            ...dados, 
-            status1, 
-            status2,
-            decisao,
-            parceriaEmissor, 
-            dataAtualizacao: new Date().toLocaleString()
-        };
-
         // validacao dos dados
-        // validateFormSchema
-        //     .validate(dados, { abortEarly: false })
-        //     .then((dadosValidados) => {
-        //         console.log(dados);
+        validateFormSchema
+            .validate(dados, { abortEarly: false })
+            .then((dadosValidos) => {
+                console.log(dados);
 
-        setIsLoading(true);
+                setIsLoading(true);
 
-        if (id === 'novo') {
-            PedidosService.create(dados)
-                .then((result) => {
-                    setIsLoading(false);
-                    if (result instanceof Error) {
-                        alert (result.message);
-                    } else {
-                        if (isSaveAndClose()) {
-                            navigate('/pedidos');
-                        } else {
-                            navigate (`/pedidos/detalhe/${result}`);
-                        }
-                    }                    
-                });
-        } else {
-            PedidosService.updateById(Number(id), {id: Number(id), ...dados})
-                .then((result) => {
-                    setIsLoading(false);
-                    if (result instanceof Error) {
-                        alert (result.message);
-                    } else {
-                        if (isSaveAndClose()) {
-                            navigate('/pedidos');
-                        }
-                    }          
-                });             
-        }
-        // })
-        // .catch((error: yup.ValidationError) => {
-        //     console.log(error);
-        // });
+                if (id === 'novo') {
+                    PedidosService
+                        .create(dadosValidos as IFormData)
+                        .then((result) => {
+                            setIsLoading(false);
+                            if (result instanceof Error) {
+                                alert (result.message);
+                            } else {
+                                if (isSaveAndClose()) {
+                                    navigate('/pedidos');
+                                } else {
+                                    console.log(result);
+                                    navigate (`/pedidos/detalhe/${result}`);
+                                }
+                            }                    
+                        });
+                } else {
+                    PedidosService
+                        .updateById(Number(id), {id: Number(id), ...dadosValidos as IFormData})
+                        .then((result) => {
+                            setIsLoading(false);
+                            if (result instanceof Error) {
+                                alert (result.message);
+                            } else {
+                                console.log(result);
+                                if (isSaveAndClose()) {
+                                    navigate('/pedidos');
+                                }
+                            }          
+                        });             
+                }
+            })
+            .catch((error: yup.ValidationError) => {
+                console.log(error);
+            });
     };
 
     /**
@@ -227,8 +234,6 @@ export const DetalhesPedido: React.FC = () => {
                 />
             }
         >
-            
-   
 
             <Form ref={formRef} onSubmit={handleSave}>
                 <Box margin={1} display='flex' flexDirection='column' component={Paper} variant='outlined'>
@@ -431,58 +436,58 @@ export const DetalhesPedido: React.FC = () => {
                         </Grid>
                         <Grid container direction='row' padding={2} paddingTop={4} spacing={2}>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
-                                <InputLabel id="demo-simple-select-label">Status 1</InputLabel>
+                                <InputLabel id="status1">Status 1</InputLabel>
                                 <Select
                                     fullWidth
-                                    id="demo-simple-select"
+                                    id="status1"
                                     name={'status1'}
-                                    value={status1}
-                                    onChange={handleChangeStatus1}
+                                    value={selectStatus1}
+                                    onChange={e => setSelectStatus1(e.target.value)}
                                 >
-                                    <MenuItem value={'1'}>Aprovado</MenuItem>
-                                    <MenuItem value={'2'}>Reprovado</MenuItem>
-                                    <MenuItem value={'3'}>Pendente</MenuItem>
+                                    {listStatus1.map((item, _index) => (
+                                        <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>    
+                                    ))}
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
-                                <InputLabel id="demo-simple-select-label">Status 2</InputLabel>
+                                <InputLabel id="status2">Status 2</InputLabel>
                                 <Select
                                     fullWidth
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={status2}
-                                    onChange={handleChangeStatus2}
+                                    name={'status2'}
+                                    value={selectStatus2}
+                                    onChange={e => setSelectStatus2(e.target.value)}
                                 >
-                                    <MenuItem value={'1'}>Aprovado</MenuItem>
-                                    <MenuItem value={'2'}>Reprovado</MenuItem>
-                                    <MenuItem value={'3'}>Pendente</MenuItem>
+                                    {listStatus2.map((item, _index) => (
+                                        <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                                    ))}
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
-                                <InputLabel id="demo-simple-select-label">Decisão</InputLabel>
+                                <InputLabel id="decisao">Decisão</InputLabel>
                                 <Select
                                     fullWidth
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={decisao}
-                                    onChange={handleChangeDecisao}
+                                    id="decisao"
+                                    name="decisao"
+                                    value={selectDecisao}
+                                    onChange={e => setSelectDecisao(e.target.value)}
                                 >
-                                    <MenuItem value={'1'}>Aprovado</MenuItem>
-                                    <MenuItem value={'2'}>Reprovado</MenuItem>
-                                    <MenuItem value={'3'}>Pendente</MenuItem>
+                                    {listDecisao.map((item, _index) => (
+                                        <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                                    ))}
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
-                                <InputLabel id="demo-simple-select-label">Parceria Emissor</InputLabel>
+                                <InputLabel id="parceria">Parceria Emissor</InputLabel>
                                 <Select
                                     fullWidth
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={parceriaEmissor}
-                                    onChange={handleChangeParceria}
+                                    id="parceria"
+                                    name="parceria"
+                                    value={selectParceria}
+                                    onChange={e => setSelectParceria(e.target.value)}
                                 >
-                                    <MenuItem value={'1'}>Sim</MenuItem>
-                                    <MenuItem value={'2'}>Não</MenuItem>
+                                    {listParceria.map((item, _index) => (
+                                        <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                                    ))}
                                 </Select>                                
                             </Grid>
                             <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>

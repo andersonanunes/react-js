@@ -66,7 +66,41 @@
       "status1": "1",
       "status2": "1",
       "decisao": "1",
-      "parceriaEmissor": ""
+      "parceriaEmissor": "2"
+    },
+    {
+      "id": "3",
+      "loja": "Carrefour Tamboré",
+      "segmento": "Varejo",
+      "score": "1",
+      "pedidoVortex": "12589645",
+      "pedidoCliente": "12589627",
+      "dataPedido": "02/12/2022 08:55:00",
+      "sla": "24",
+      "nomeCompleto": "Arya Stark",
+      "email": "arya.stark@gmail.com",
+      "cpf": "13245678911",
+      "telefone": "11999999999",
+      "vinculo": "irmãos",
+      "enderecoEntrega": "Av. Marginal",
+      "numero": "1455",
+      "complemento": "bloco 4 apto 142",
+      "cep": "06395010",
+      "bairro": "Cidade Ariston",
+      "cidade": "Carapicuíba",
+      "estado": "SP",
+      "observacoes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget sem dolor.",
+      "valorFrete": "19,00",
+      "valorItens": "1920,00",
+      "descontoAplicado": "0,00",
+      "formaPagamento": "Crédito",
+      "descricaoProduto": "Geladeira/Refrigerador Top Freezer cor Inox 382L Electrolux (TF42S)",
+      "dataCriacao": "16/02/2023 13:00:00",
+      "dataAtualizacao": "16/02/2023 13:00:00",
+      "status1": "3",
+      "status2": "3",
+      "decisao": "3",
+      "parceriaEmissor": "2"
     }
   ]
 }

@@ -9,7 +9,7 @@ const Feed = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    const data =  fetchFromApi(`search?part=snippet&q=${selectedCategory}`)
+    fetchFromApi(`search?part=snippet&q=${selectedCategory}`)
       .then((data) => setVideos(data.items))
   }, [selectedCategory]);
 
@@ -21,19 +21,18 @@ const Feed = () => {
           setSelectedCategory = {setSelectedCategory}
         />
         <Typography className='copyright' variant='body2' sx={{ mt: 1.5, color: '#fff' }}>
-          Copyright 2022 WhoDesigners
+          Copyright 2023 WhoDesigners
         </Typography>
       </Box>
 
       <Box p={2} sx={{ overflowY: 'auto', height: '90vh', flex: 2 }}>
         <Typography variant='h4' fontWeight='bold' mb={2} sx={{ color: 'white' }}>
-          {selectedCategory} <span style={{ color: '#F31503' }}>
-            <Videos videos={videos} />
-          </span>
+          {selectedCategory} <span style={{ color: '#F31503' }}>Videos</span>
         </Typography>
+        <Videos videos = {videos} />
       </Box>
 
-      <Videos videos={videos} />
+      {/* <Videos videos={videos} /> */}
 
     </Stack>
   )

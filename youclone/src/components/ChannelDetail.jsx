@@ -12,11 +12,14 @@ const ChannelDetail = () => {
   const {id} = useParams();
 
   useEffect(() => {
+    
     fetchFromApi(`channels?part=snippet&id=${id}`)
       .then((data) => setChannelDetail(data?.items[0]))
+    
     fetchFromApi(`search?channelId=${id}&part=snippet&order=date`)
       .then((data) => setVideos(data?.items))
-    }, [id])
+    
+  }, [id])
 
   return(
     <Box minHeight='95vh'>

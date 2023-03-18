@@ -4,16 +4,20 @@ import ReactPlayer from 'react-player'
 import { Typography, Box, Stack } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
 
-import { Video } from './';
+import { Videos } from './';
 import { fetchFromApi } from '../utils/fetchFromApi';
 
 const VideoDetail = () => { 
   const [videoDetail, setVideoDetail] = useState(null);
-  const id = useParams();
+  const [videos, setVideos] = useState(null);
+  const {id} = useParams();
 
   useEffect(() => {
     fetchFromApi(`videos?part=snippet,statistics&id=${id}`)
       .then((data) => setVideoDetail(data.items[0]));
+
+    fetchFromApi(`search?part=snippet&id=${id}&type=video`)
+      .then((data) => setVideos(data.items));
   }, [id]);
 
   if (!videoDetail?.snippet) return 'Loading...';
@@ -25,13 +29,13 @@ const VideoDetail = () => {
       <Stack direction={{ xs: 'column', md: 'row' }}>
         <Box flex={1}>
           <Box sx={{ width: '100%', position: 'sticky', top: '86px' }}>
-            <ReactPlayer url={`https://www.youtube.com/watch/v=${id}`} className='react=player' controls />
+            <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} className='react-player' controls />
             <Typography color='#ffffff' variant='h5' fontWeight='bold' p={2}>
               {title}
             </Typography>
             <Stack direction='row' justifyContent='space-between' sx={{ color: '#ffffff' }} py={1} px={2} >
               <Link to={`/channel/${channelId}`}>
-                <Typography variant={{ sm: 'subtitle1', md: 'h6' }}>
+                <Typography variant={{ sm: 'subtitle1', md: 'h6' }} color='#ffffff' >
                   {channelTitle}
                   <CheckCircle sx={{ fontSize: '12px', color: 'gray', ml: '5px' }} />
                 </Typography>
@@ -46,6 +50,9 @@ const VideoDetail = () => {
               </Stack>
             </Stack>
           </Box>
+        </Box>
+        <Box px={2} py={{ md: 1, xs: 5 }} justifyContent='center' alignItems='center' >
+          <Videos videos={videos} direction='column' />
         </Box>
       </Stack>
     </Box>
